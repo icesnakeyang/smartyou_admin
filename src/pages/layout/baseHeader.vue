@@ -4,13 +4,9 @@
       <Icon type="ios-navigate"></Icon>
       Item 1
     </MenuItem>
-    <MenuItem name="2">
-      <Icon type="ios-keypad"></Icon>
-      Item 2
-    </MenuItem>
     <Submenu name="1">
       <template slot="title">
-        <Icon type="ios-analytics" />
+        <Icon type="ios-analytics"></Icon>
         登录/注册
       </template>
       <MenuGroup title="Item 1">
@@ -28,7 +24,9 @@
 <script>
   export default {
     name: "baseHeader",
-    methods: {}
+    methods: {
+
+    }
   }
 </script>
 

@@ -7,13 +7,14 @@ import register from "@/pages/user/register/register";
 import baseFooter from "@/pages/layout/baseFooter";
 import login from "@/pages/user/login/login";
 import baseHeader from "@/pages/layout/baseHeader";
+import dashboard from "@/pages/dashboard";
 
 Vue.use(Router)
 
 const router = new Router({
   routes: [
     {
-      path: '/guest',
+      path: '/',
       component: guestLayout,
       children: [
         {
@@ -33,10 +34,18 @@ const router = new Router({
             content: login,
             footer: baseFooter
           }
+        },
+        {
+          path:'dashboard',
+          name:'dashboard',
+          components:{
+            header:baseHeader,
+            content:dashboard,
+            footer:baseFooter
+          }
         }
       ]
-    }
-  ]
+    }]
 })
 router.beforeEach((to, from, next) => {
   console.log(to)
