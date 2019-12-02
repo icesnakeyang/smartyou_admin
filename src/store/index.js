@@ -14,6 +14,9 @@ export default new Vuex.Store({
     },
     saveUsername(ctx, username) {
       ctx.commit('saveUsername', username)
+    },
+    signOut(ctx) {
+      ctx.commit('signOut')
     }
   },
   mutations: {
@@ -24,6 +27,12 @@ export default new Vuex.Store({
     saveUsername(state, username) {
       state.gogo_smartyou_username = username
       localStorage.gogo_smartyou_username = username
+    },
+    signOut(state) {
+      state.gogo_smartyou_token = ''
+      localStorage.gogo_smartyou_token = ''
+      state.gogo_smartyou_username = ''
+      localStorage.gogo_smartyou_username = ''
     }
   }
 })

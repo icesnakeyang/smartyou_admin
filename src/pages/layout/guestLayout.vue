@@ -86,6 +86,12 @@
             name: 'register'
           })
         }
+        if (name === 'menuSignOut') {
+          this.$store.dispatch('signOut')
+          this.$router.push({
+            path: '/'
+          })
+        }
       }
     }
   }

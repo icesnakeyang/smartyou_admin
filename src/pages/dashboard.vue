@@ -1,5 +1,5 @@
 <template>
-  <div>dashboard</div>
+  <div style="background: slategray">dashboard</div>
 </template>
 
 <script>
