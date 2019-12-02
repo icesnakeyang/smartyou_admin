@@ -43,7 +43,8 @@
           console.log(response)
           if (response.data.code === 0) {
             this.$Message.success('登录成功')
-            this.$store.dispatch('saveToken', response.data.data.userInfo.token)
+            this.$store.dispatch('saveToken', response.data.data.adminInfo.token)
+            this.$store.dispatch('saveUsername', response.data.data.adminInfo.username)
             this.$router.push({
               name: 'dashboard'
             })
