@@ -17,6 +17,7 @@
         <InputNumber :max="1" :min=0 :step="0.01" v-model="memberFee2Rate"></InputNumber>
         <span>100元火车票销售价：{{salesPrice2}}</span>
       </FormItem>
+      <Button type="primary" @click="saveSettings">保存</Button>
     </Form>
   </div>
 </template>
@@ -49,29 +50,23 @@
         },
         methods: {
             saveSettings() {
-                let params =
-                    [
+                let params = {
+                    params: [
                         {
                             keyName: this.ticketRate,
                             keyValue: this.ticketRate,
                         },
-                {
-                    keyName: memberFee1,
-                        keyValue
-                :
-                    memberFee1Rate,
+                        {
+                            keyName: this.memberFee1,
+                            keyValue: this.memberFee1Rate,
+                        },
+                        {
+                            keyName: this.memberFee2,
+                            keyValue: this.memberFee2Rate,
+                        }]
                 }
-            ,
-                {
-                    keyName: memberFee2,
-                        keyValue
-                :
-                    memberFee2Rate,
-                }
-            ]
 
-
-                apiUpdateTrainMemberSettings({}).then((response) => {
+                apiUpdateTrainMemberSettings({params}).then((response) => {
                     if (response.data.code === 0) {
                         this.$Message.success('保存成功')
                     } else {
