@@ -1,25 +1,25 @@
 <template>
   <div>
-    <MenuItem name="1">
+    <MenuItem name="menuDashboard">
       <Icon type="md-document"/>
       控制台
     </MenuItem>
-    <Submenu name="2">
+    <Submenu name="menuTrain">
       <template slot="title">
         <Icon type="ios-keypad"></Icon>
         火车票管理
       </template>
-      <MenuItem name="2-1">订单管理</MenuItem>
-      <MenuItem name="2-2">Option 2</MenuItem>
+      <MenuItem name="menuTrainOrder">订单管理</MenuItem>
+      <MenuItem name="menuTrainSettings">订单设置</MenuItem>
     </Submenu>
 
-    <Submenu name="3">
+    <Submenu name="menuAircraft">
       <template slot="title">
         <Icon type="ios-keypad"></Icon>
         飞机票管理
       </template>
-      <MenuItem name="3-1">Option 1</MenuItem>
-      <MenuItem name="3-2">Option 2</MenuItem>
+      <MenuItem name="menuAirOrder">Option 1</MenuItem>
+      <MenuItem name="menuAirRefund">Option 2</MenuItem>
     </Submenu>
 
     <Submenu name="4">

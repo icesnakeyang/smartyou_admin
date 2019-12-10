@@ -65,10 +65,20 @@
                         path: '/'
                     })
                 }
-                if (name === '2-1') {
+                if (name === 'menuDashboard') {
+                    this.$router.push({
+                        name: 'dashboard'
+                    })
+                }
+                if (name === 'menuTrainOrder') {
                     console.log('menu')
                     this.$router.push({
                         name: 'trainBookingList'
+                    })
+                }
+                if (name === 'menuTrainSettings') {
+                    this.$router.push({
+                        name: 'trainSettings'
                     })
                 }
             }

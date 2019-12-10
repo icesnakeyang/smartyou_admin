@@ -10,6 +10,7 @@ import baseHeader from "@/pages/layout/baseHeader";
 import dashboard from "../pages/dashboard/dashboard";
 import adminSider from "../pages/layout/adminSider";
 import trainBookingList from "../pages/train/trainBookingList";
+import trainSettings from "../pages/train/trainSettings";
 
 Vue.use(Router)
 
@@ -54,6 +55,16 @@ const router = new Router({
             header: baseHeader,
             sider: adminSider,
             content: trainBookingList,
+            footer: baseFooter
+          }
+        },
+        {
+          path: 'trainSettings',
+          name: 'trainSettings',
+          components: {
+            header: baseHeader,
+            sider: adminSider,
+            content: trainSettings,
             footer: baseFooter
           }
         }

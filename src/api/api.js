@@ -26,3 +26,11 @@ export const apiListAllTrainOrder = params => {
     }
   })
 }
+
+export const apiUpdateTrainMemberSettings = params => {
+  return axios.post(`${host}/admin/updateTrainMemberSettings`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
