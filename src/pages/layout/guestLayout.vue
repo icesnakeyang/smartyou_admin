@@ -18,37 +18,14 @@
     <Layout>
       <div v-if="isLogin">
         <Sider>
-          <Menu active-name="1-2" theme="dark" width="auto" :open-names="['1']">
-            <Submenu name="1">
-              <template slot="title">
-                <Icon type="ios-navigate"></Icon>
-                Item 1
-              </template>
-              <MenuItem name="1-1">Option 1</MenuItem>
-              <MenuItem name="1-2">Option 2</MenuItem>
-              <MenuItem name="1-3">Option 3</MenuItem>
-            </Submenu>
-            <Submenu name="2">
-              <template slot="title">
-                <Icon type="ios-keypad"></Icon>
-                Item 2
-              </template>
-              <MenuItem name="2-1">Option 1</MenuItem>
-              <MenuItem name="2-2">Option 2</MenuItem>
-            </Submenu>
-            <Submenu name="3">
-              <template slot="title">
-                <Icon type="ios-analytics"></Icon>
-                Item 3
-              </template>
-              <MenuItem name="3-1">Option 1</MenuItem>
-              <MenuItem name="3-2">Option 2</MenuItem>
-            </Submenu>
+          <Menu theme="dark" width="auto" @on-select="onMenuSelect">
+            <router-view name="sider"></router-view>
           </Menu>
         </Sider>
       </div>
       <Layout :style="{padding: '24px 24px 24px'}">
-        <div class="content-guest-view">
+        <!--        <div class="content-guest-view">-->
+        <div>
           <router-view name="content"></router-view>
         </div>
       </Layout>
@@ -60,41 +37,43 @@
 </template>
 
 <script>
-  export default {
-    name: "guestLayout",
-    computed: {
-      isLogin() {
-        console.log(this.$store.state)
-        if (this.$store.state.gogo_smartyou_token) {
-          console.log('login')
-          return true
+    export default {
+        name: "guestLayout",
+        computed: {
+            isLogin() {
+                if (this.$store.state.gogo_smartyou_token) {
+                    return true
+                }
+                return false
+            }
+        },
+        methods: {
+            onMenuSelect(name) {
+                if (name === 'menuLogin') {
+                    this.$router.push({
+                        name: 'login'
+                    })
+                }
+                if (name === 'menuRegister') {
+                    this.$router.push({
+                        name: 'register'
+                    })
+                }
+                if (name === 'menuSignOut') {
+                    this.$store.dispatch('signOut')
+                    this.$router.push({
+                        path: '/'
+                    })
+                }
+                if (name === '2-1') {
+                    console.log('menu')
+                    this.$router.push({
+                        name: 'trainBookingList'
+                    })
+                }
+            }
         }
-        console.log('not login')
-        return false
-      }
-    },
-    methods: {
-      onMenuSelect(name) {
-        console.log(name)
-        if (name === 'menuLogin') {
-          this.$router.push({
-            name: 'login'
-          })
-        }
-        if (name === 'menuRegister') {
-          this.$router.push({
-            name: 'register'
-          })
-        }
-        if (name === 'menuSignOut') {
-          this.$store.dispatch('signOut')
-          this.$router.push({
-            path: '/'
-          })
-        }
-      }
     }
-  }
 </script>
 
 <style scoped>

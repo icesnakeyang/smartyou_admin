@@ -1,0 +1,76 @@
+<template>
+  <div>
+    <MenuItem name="1">
+      <Icon type="md-document"/>
+      控制台
+    </MenuItem>
+    <Submenu name="2">
+      <template slot="title">
+        <Icon type="ios-keypad"></Icon>
+        火车票管理
+      </template>
+      <MenuItem name="2-1">订单管理</MenuItem>
+      <MenuItem name="2-2">Option 2</MenuItem>
+    </Submenu>
+
+    <Submenu name="3">
+      <template slot="title">
+        <Icon type="ios-keypad"></Icon>
+        飞机票管理
+      </template>
+      <MenuItem name="3-1">Option 1</MenuItem>
+      <MenuItem name="3-2">Option 2</MenuItem>
+    </Submenu>
+
+    <Submenu name="4">
+      <template slot="title">
+        <Icon type="ios-analytics"></Icon>
+        酒店管理
+      </template>
+      <MenuItem name="4-1">Option 1</MenuItem>
+      <MenuItem name="4-2">Option 2</MenuItem>
+    </Submenu>
+    <Submenu name="5">
+      <template slot="title">
+        <Icon type="ios-analytics"></Icon>
+        旅游线路
+      </template>
+      <MenuItem name="5-1">Option 1</MenuItem>
+      <MenuItem name="5-2">Option 2</MenuItem>
+    </Submenu>
+    <Submenu name="6">
+      <template slot="title">
+        <Icon type="ios-analytics"></Icon>
+        旅游线路
+      </template>
+      <MenuItem name="6-1">Option 1</MenuItem>
+      <MenuItem name="6-2">Option 2</MenuItem>
+    </Submenu>
+    <Submenu name="7">
+      <template slot="title">
+        <Icon type="ios-analytics"></Icon>
+        导游管理
+      </template>
+      <MenuItem name="7-1">Option 1</MenuItem>
+      <MenuItem name="7-2">Option 2</MenuItem>
+    </Submenu>
+    <Submenu name="8">
+      <template slot="title">
+        <Icon type="ios-analytics"></Icon>
+        用户攻略
+      </template>
+      <MenuItem name="8-1">Option 1</MenuItem>
+      <MenuItem name="8-2">Option 2</MenuItem>
+    </Submenu>
+  </div>
+</template>
+
+<script>
+    export default {
+        name: "adminSider"
+    }
+</script>
+
+<style scoped>
+
+</style>

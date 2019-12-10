@@ -7,7 +7,9 @@ import register from "@/pages/user/register/register";
 import baseFooter from "@/pages/layout/baseFooter";
 import login from "@/pages/user/login/login";
 import baseHeader from "@/pages/layout/baseHeader";
-import dashboard from "@/pages/dashboard";
+import dashboard from "../pages/dashboard/dashboard";
+import adminSider from "../pages/layout/adminSider";
+import trainBookingList from "../pages/train/trainBookingList";
 
 Vue.use(Router)
 
@@ -36,21 +38,30 @@ const router = new Router({
           }
         },
         {
-          path:'dashboard',
-          name:'dashboard',
-          components:{
-            header:baseHeader,
-            content:dashboard,
-            footer:baseFooter
+          path: 'dashboard',
+          name: 'dashboard',
+          components: {
+            header: baseHeader,
+            sider: adminSider,
+            content: dashboard,
+            footer: baseFooter
+          }
+        },
+        {
+          path: 'trainBookingList',
+          name: 'trainBookingList',
+          components: {
+            header: baseHeader,
+            sider: adminSider,
+            content: trainBookingList,
+            footer: baseFooter
           }
         }
       ]
     }]
 })
 router.beforeEach((to, from, next) => {
-  console.log(to)
   if (!store.state.gogo_smartyou_token) {
-    window.console.log(to)
     if (to.name === 'register') {
       next()
     } else {
@@ -63,7 +74,11 @@ router.beforeEach((to, from, next) => {
       }
     }
   } else {
-    window.console.log(to)
+    if (to.path === '/') {
+      next({
+        name: 'dashboard'
+      })
+    }
     next()
   }
 })
