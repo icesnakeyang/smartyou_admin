@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Form :model="formItem" :label-width="100">
+    <Form :label-width="100">
       <FormItem label="普通会员加价率">
         <InputNumber :max="1" :min="0" :step="0.01" v-model="ticketRate"></InputNumber>
         <span>100元火车票销售价：{{salesPrice0}}</span>
@@ -23,18 +23,18 @@
 </template>
 
 <script>
-    import {apiUpdateTrainMemberSettings} from "../../api/api";
+    import {apiListTrainMemberKeys, apiUpdateTrainMemberSettings} from "../../api/api";
 
     export default {
         name: "trainSettings",
         data() {
             return {
-                ticketRate: 0,
+                ticketRate: 0.0,
                 basePrice: 100,
                 memberFee1: 15,
-                memberFee1Rate: 0,
+                memberFee1Rate: 0.0,
                 memberFee2: 30,
-                memberFee2Rate: 0
+                memberFee2Rate: 0.0
             }
         },
         computed: {
@@ -49,33 +49,81 @@
             }
         },
         methods: {
-            saveSettings() {
-                let params = {
-                    params: [
-                        {
-                            keyName: this.ticketRate,
-                            keyValue: this.ticketRate,
-                        },
-                        {
-                            keyName: this.memberFee1,
-                            keyValue: this.memberFee1Rate,
-                        },
-                        {
-                            keyName: this.memberFee2,
-                            keyValue: this.memberFee2Rate,
-                        }]
-                }
-
-                apiUpdateTrainMemberSettings({params}).then((response) => {
+            loadAllData() {
+                apiListTrainMemberKeys({}).then((response) => {
                     if (response.data.code === 0) {
-                        this.$Message.success('保存成功')
+                        let list = response.data.data.keys;
+                        list.forEach((item, index) => {
+                            if (item.keyName === 'ticketRate') {
+                                this.ticketRate = Number(item.value)
+                            }
+                            if (item.keyName === 'memberFee1') {
+                                this.memberFee1 = Number(item.value)
+                            }
+                            if (item.keyName === 'memberFee1Rate') {
+                                this.memberFee1Rate = Number(item.value)
+                            }
+                            if (item.keyName === 'memberFee2') {
+                                this.memberFee2 = Number(item.value)
+                            }
+                            if (item.keyName === 'memberFee2Rate') {
+                                this.memberFee2Rate = Number(item.value)
+                            }
+                        })
                     } else {
-                        this.$Message.error('保存失败')
+                        this.$Message.error('读取会员配置信息失败')
                     }
                 }).catch((error) => {
-                    this.$Message.error('保存失败')
+                    this.$Message.error('读取会员配置信息失败')
                 })
+            },
+            saveSettings() {
+                this.$Modal.confirm({
+                    title: '提问',
+                    content: '<p>确定要修改所有的设置吗？</p>',
+                    okText: '确定',
+                    cancelText: '取消',
+                    onCancel: () => {
+                        return
+                    },
+                    onOk: () => {
+                        let params = {
+                            keys: [{
+                                keyName: 'ticketRate',
+                                keyValue: this.ticketRate,
+                            },
+                                {
+                                    keyName: 'memberFee1',
+                                    keyValue: this.memberFee1,
+                                },
+                                {
+                                    keyName: 'memberFee1Rate',
+                                    keyValue: this.memberFee1Rate,
+                                },
+                                {
+                                    keyName: 'memberFee2',
+                                    keyValue: this.memberFee2,
+                                },
+                                {
+                                    keyName: 'memberFee2Rate',
+                                    keyValue: this.memberFee2Rate,
+                                }]
+                        }
+                        apiUpdateTrainMemberSettings(params).then((response) => {
+                            if (response.data.code === 0) {
+                                this.$Message.success('保存成功')
+                            } else {
+                                    this.$Message.error('保存失败')
+                            }
+                        }).catch((error) => {
+                            this.$Message.error('保存失败')
+                        })
+                    },
+                });
             }
+        },
+        mounted() {
+            this.loadAllData()
         }
     }
 </script>
