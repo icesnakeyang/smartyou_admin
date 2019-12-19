@@ -11,6 +11,7 @@ import dashboard from "../pages/dashboard/dashboard";
 import adminSider from "../pages/layout/adminSider";
 import trainBookingList from "../pages/train/trainBookingList";
 import trainSettings from "../pages/train/trainSettings";
+import userList from "../pages/user/userList";
 
 Vue.use(Router)
 
@@ -65,6 +66,16 @@ const router = new Router({
             header: baseHeader,
             sider: adminSider,
             content: trainSettings,
+            footer: baseFooter
+          }
+        },
+        {
+          path: 'userList',
+          name: 'userList',
+          components: {
+            header: baseHeader,
+            sider: adminSider,
+            content: userList,
             footer: baseFooter
           }
         }

@@ -52,7 +52,9 @@
         },
         methods: {
             loadAllData() {
+                console.log(1)
                 apiStatisticUsers({}).then((response) => {
+                    console.log(response)
                     if (response.data.code === 0) {
                         this.totalUser = response.data.data.totalUser
                     } else {

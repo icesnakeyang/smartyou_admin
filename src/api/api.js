@@ -42,3 +42,11 @@ export const apiListTrainMemberKeys = params => {
     }
   })
 }
+
+export const apiListAllUser = params => {
+  return axios.post(`${host}/admin/listAllUser`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}

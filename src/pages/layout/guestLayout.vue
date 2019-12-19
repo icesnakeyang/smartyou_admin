@@ -81,6 +81,11 @@
                         name: 'trainSettings'
                     })
                 }
+                if (name === 'menuUserList') {
+                    this.$router.push({
+                        name: 'userList'
+                    })
+                }
             }
         }
     }
