@@ -16,7 +16,7 @@
         <p slot="title">会员1</p>
         <Form :label-width="100">
           <FormItem label="会员名称">
-            <Input type="text"></Input>
+            <Input type="text" v-model="memberType1"></Input>
           </FormItem>
           <FormItem label="会员费">
             <InputNumber :min="0" :step="1" v-model="memberFee1"></InputNumber>
@@ -32,7 +32,7 @@
         <p slot="title">会员2</p>
         <Form :label-width="100">
           <FormItem label="会员名称">
-            <Input type="text"></Input>
+            <Input type="text" v-model="memberType2"></Input>
           </FormItem>
           <FormItem label="会员费2档">
             <InputNumber :min="0" :step="1" v-model="memberFee2"></InputNumber>
@@ -56,8 +56,10 @@
       return {
         ticketRate: 0.0,
         basePrice: 100,
+        memberType1: '',
         memberFee1: 15,
         memberFee1Rate: 0.0,
+        memberType2: '',
         memberFee2: 30,
         memberFee2Rate: 0.0
       }
@@ -77,19 +79,23 @@
       loadAllData() {
         apiListTrainMemberKeys({}).then((response) => {
           if (response.data.code === 0) {
+            console.log(response.data.data)
             let list = response.data.data.keys;
             list.forEach((item, index) => {
+              console.log(item)
               if (item.keyName === 'ticketRate') {
                 this.ticketRate = Number(item.value)
               }
               if (item.keyName === 'memberFee1') {
                 this.memberFee1 = Number(item.value)
+                this.memberType1 = item.memberTypeName
               }
               if (item.keyName === 'memberFee1Rate') {
                 this.memberFee1Rate = Number(item.value)
               }
               if (item.keyName === 'memberFee2') {
                 this.memberFee2 = Number(item.value)
+                this.memberType2 = item.memberTypeName
               }
               if (item.keyName === 'memberFee2Rate') {
                 this.memberFee2Rate = Number(item.value)
@@ -115,9 +121,10 @@
             let params = {
               keys: [{
                 keyName: 'ticketRate',
-                keyValue: this.ticketRate,
+                keyValue: this.ticketRate
               },
                 {
+                  memberTypeName: this.memberType1,
                   keyName: 'memberFee1',
                   keyValue: this.memberFee1,
                 },
@@ -126,6 +133,7 @@
                   keyValue: this.memberFee1Rate,
                 },
                 {
+                  memberTypeName: this.memberType2,
                   keyName: 'memberFee2',
                   keyValue: this.memberFee2,
                 },
