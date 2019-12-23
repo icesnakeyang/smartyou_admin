@@ -50,3 +50,15 @@ export const apiListAllUser = params => {
     }
   })
 }
+
+export const apiCreateTour = params => {
+  return axios.post(`${host}/tour/createTour`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
+export const apiListSpecialPriceTour = params => {
+  return axios.post(`${host}/tour/listSpecialPriceTour`, params)
+}

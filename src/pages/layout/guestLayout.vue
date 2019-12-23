@@ -86,6 +86,21 @@
                         name: 'userList'
                     })
                 }
+                if (name === 'menuTourDashboard') {
+                    this.$router.push({
+                        name: 'TourDashboard'
+                    })
+                }
+                if (name === 'menuTourList') {
+                    this.$router.push({
+                        name: 'tourList'
+                    })
+                }
+                if (name === 'menuNewTour') {
+                    this.$router.push({
+                        name: 'newTour'
+                    })
+                }
             }
         }
     }

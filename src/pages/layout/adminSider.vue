@@ -35,16 +35,9 @@
         <Icon type="ios-analytics"></Icon>
         旅游线路
       </template>
-      <MenuItem name="5-1">Option 1</MenuItem>
-      <MenuItem name="5-2">Option 2</MenuItem>
-    </Submenu>
-    <Submenu name="6">
-      <template slot="title">
-        <Icon type="ios-analytics"></Icon>
-        旅游线路
-      </template>
-      <MenuItem name="6-1">Option 1</MenuItem>
-      <MenuItem name="6-2">Option 2</MenuItem>
+      <MenuItem name="menuTourDashboard">控制台</MenuItem>
+      <MenuItem name="menuTourList">旅游线路列表</MenuItem>
+      <MenuItem name="menuNewTour">创建旅游线路</MenuItem>
     </Submenu>
     <Submenu name="7">
       <template slot="title">

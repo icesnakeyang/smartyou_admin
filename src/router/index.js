@@ -12,6 +12,9 @@ import adminSider from "../pages/layout/adminSider";
 import trainBookingList from "../pages/train/trainBookingList";
 import trainSettings from "../pages/train/trainSettings";
 import userList from "../pages/user/userList";
+import TourDashboard from "../pages/tour/TourDashboard";
+import tourList from "../pages/tour/tourList";
+import newTour from "../pages/tour/newTour";
 
 Vue.use(Router)
 
@@ -76,6 +79,36 @@ const router = new Router({
             header: baseHeader,
             sider: adminSider,
             content: userList,
+            footer: baseFooter
+          }
+        },
+        {
+          path: 'TourDashboard',
+          name: 'TourDashboard',
+          components: {
+            header: baseHeader,
+            sider: adminSider,
+            content: TourDashboard,
+            footer: baseFooter
+          }
+        },
+        {
+          path: 'tourList',
+          name: 'tourList',
+          components: {
+            header: baseHeader,
+            sider: adminSider,
+            content: tourList,
+            footer: baseFooter
+          }
+        },
+        {
+          path: 'newTour',
+          name: 'newTour',
+          components: {
+            header: baseHeader,
+            sider: adminSider,
+            content: newTour,
             footer: baseFooter
           }
         }
