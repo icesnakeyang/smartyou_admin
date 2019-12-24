@@ -35,7 +35,10 @@
     methods: {
       btEdit() {
         this.$router.push({
-          name: 'editMemberType'
+          name: 'editMemberType',
+            params:{
+              memberTypeId:this.row.memberTypeId
+            }
         })
       }
     },

@@ -44,6 +44,14 @@ export const apiListMemberType = params => {
   })
 }
 
+export const apiGetMemberType = params => {
+  return axios.post(`${host}/admin/getMemberType`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
 export const apiListAllUser = params => {
   return axios.post(`${host}/admin/listAllUser`, params, {
     headers: {
