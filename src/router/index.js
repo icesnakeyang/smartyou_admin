@@ -10,11 +10,12 @@ import baseHeader from "@/pages/layout/baseHeader";
 import dashboard from "../pages/dashboard/dashboard";
 import adminSider from "../pages/layout/adminSider";
 import trainBookingList from "../pages/train/trainBookingList";
-import trainSettings from "../pages/train/trainSettings";
 import userList from "../pages/user/userList";
 import TourDashboard from "../pages/tour/TourDashboard";
 import tourList from "../pages/tour/tourList";
 import newTour from "../pages/tour/newTour";
+import memberTypeList from "../pages/member/memberTypeList";
+import createMemberType from "../pages/member/createMemberType";
 
 Vue.use(Router)
 
@@ -63,12 +64,12 @@ const router = new Router({
           }
         },
         {
-          path: 'trainSettings',
-          name: 'trainSettings',
+          path: 'memberTypeList',
+          name: 'memberTypeList',
           components: {
             header: baseHeader,
             sider: adminSider,
-            content: trainSettings,
+            content: memberTypeList,
             footer: baseFooter
           }
         },
@@ -109,6 +110,16 @@ const router = new Router({
             header: baseHeader,
             sider: adminSider,
             content: newTour,
+            footer: baseFooter
+          }
+        },
+        {
+          path: 'createMemberType',
+          name: 'createMemberType',
+          components: {
+            header: baseHeader,
+            sider: adminSider,
+            content: createMemberType,
             footer: baseFooter
           }
         }

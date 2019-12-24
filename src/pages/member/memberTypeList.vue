@@ -48,10 +48,11 @@
 </template>
 
 <script>
-  import {apiListTrainMemberKeys, apiUpdateTrainMemberSettings} from "../../api/api";
+
+  import {apiListMemberType} from "../../api/api";
 
   export default {
-    name: "trainSettings",
+    name: "memberTypeList",
     data() {
       return {
         ticketRate: 0.0,
@@ -77,7 +78,7 @@
     },
     methods: {
       loadAllData() {
-        apiListTrainMemberKeys({}).then((response) => {
+        apiListMemberType({}).then((response) => {
           if (response.data.code === 0) {
             console.log(response.data.data)
             let list = response.data.data.keys;

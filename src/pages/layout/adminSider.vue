@@ -10,7 +10,6 @@
         火车票管理
       </template>
       <MenuItem name="menuTrainOrder">订单管理</MenuItem>
-      <MenuItem name="menuTrainSettings">订单设置</MenuItem>
     </Submenu>
 
     <Submenu name="menuAircraft">
@@ -63,6 +62,15 @@
       <MenuItem name="menuUserList">注册用户</MenuItem>
       <MenuItem name="8-2">Option 2</MenuItem>
     </Submenu>
+    <Submenu name="menuMember">
+      <template slot="title">
+        <Icon type="ios-analytics"></Icon>
+        会员管理
+      </template>
+      <MenuItem name="menuListMemberType">会员类型</MenuItem>
+      <MenuItem name="menuCreateMemberType">创建会员类型</MenuItem>
+    </Submenu>
+
   </div>
 </template>
 

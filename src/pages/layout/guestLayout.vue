@@ -101,6 +101,16 @@
                         name: 'newTour'
                     })
                 }
+                if(name==='menuListMemberType'){
+                    this.$router.push({
+                        name:'memberTypeList'
+                    })
+                }
+                if(name==='menuCreateMemberType'){
+                    this.$router.push({
+                        name:'createMemberType'
+                    })
+                }
             }
         }
     }
