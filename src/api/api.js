@@ -29,7 +29,7 @@ export const apiListAllTrainOrder = params => {
 
 
 export const apiCreateMemberType = params => {
-  return axios.post(`${host}/member/createMemberType`, params, {
+  return axios.post(`${host}/admin/createMemberType`, params, {
     headers: {
       token: store.state.gogo_smartyou_token
     }
