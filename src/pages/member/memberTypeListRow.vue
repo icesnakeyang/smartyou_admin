@@ -14,38 +14,63 @@
       </FormItem>
     </Form>
     <Button type="primary" @click="btEdit">修改</Button>
-    <Button type="error">删除</Button>
+    <Button type="error" @click="btDetele">删除</Button>
   </Card>
 </template>
 
 <script>
-  export default {
-    name: "memberTypeListRow",
-    data() {
-      return {}
-    },
-    props: {
-      row: {}
-    },
-    computed: {
-      salesPrice() {
-        return parseFloat(100 * (1 + this.row.rate)).toFixed(0)
-      }
-    },
-    methods: {
-      btEdit() {
-        this.$router.push({
-          name: 'editMemberType',
-            params:{
-              memberTypeId:this.row.memberTypeId
+    import {apiDeleteMemberType} from "../../api/api";
+
+    export default {
+        name: "memberTypeListRow",
+        data() {
+            return {}
+        },
+        props: {
+            row: {}
+        },
+        computed: {
+            salesPrice() {
+                return parseFloat(100 * (1 + this.row.rate)).toFixed(0)
             }
-        })
-      }
-    },
-    mounted() {
-      console.log(this.row)
+        },
+        methods: {
+            btEdit() {
+                this.$router.push({
+                    name: 'editMemberType',
+                    params: {
+                        memberTypeId: this.row.memberTypeId
+                    }
+                })
+            },
+            btDetele() {
+                this.$Modal.confirm({
+                    title: '确认删除',
+                    content: '<p>您确定要删除这个会员类型吗？</p>',
+                    onOk: () => {
+                        apiDeleteMemberType({
+                            memberTypeId: this.row.memberTypeId
+                        }).then((response) => {
+                            if (response.data.code === 0) {
+                                this.$Message.success('删除成功');
+                                location.reload()
+                            } else {
+                                throw new Error('删除失败')
+                            }
+                        }).catch((error) => {
+                            this.$Message.error(error)
+                        })
+                    },
+                    onCancel:
+                        () => {
+                        }
+                });
+            },
+        },
+        mounted() {
+            console.log(this.row)
+        }
     }
-  }
 </script>
 
 <style scoped>

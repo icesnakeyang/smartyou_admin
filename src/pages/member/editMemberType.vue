@@ -2,17 +2,17 @@
   <div>
     <Form>
       <FormItem label="会员名称">
-        <Input type="text" v-model="memberType.memberTypeName"></Input>
+        <Input type="text" v-model="memberType.name"></Input>
       </FormItem>
       <FormItem label="会员费">
-        <InputNumber :min="0" v-model="memberType.memberTypeFee"></InputNumber>
+        <InputNumber :min="0" v-model="memberType.fee"></InputNumber>
       </FormItem>
       <FormItem label="加价率">
-        <InputNumber :max="1" :min="0" :step="0.01" v-model="memberType.memberTypeRate"></InputNumber>
+        <InputNumber :max="1" :min="0" :step="0.01" v-model="memberType.rate"></InputNumber>
         <span>100元火车票销售价：{{salesPrice}}</span>
       </FormItem>
       <FormItem label="说明">
-        <Input type="textarea" v-model="memberType.memberTypeRemark"></Input>
+        <Input type="textarea" v-model="memberType.remark"></Input>
       </FormItem>
       <div v-if="saving">
         <Spin fix>
@@ -21,14 +21,14 @@
         </Spin>
       </div>
       <div v-else>
-        <Button type="primary" @click="btSave">创建</Button>
+        <Button type="primary" @click="btSave">保存</Button>
       </div>
     </Form>
   </div>
 </template>
 
 <script>
-    import {apiGetMemberType} from "../../api/api";
+    import {apiGetMemberType, apiUpdateMemberType} from "../../api/api";
 
     export default {
         name: "editMemberType",
@@ -40,7 +40,7 @@
         },
         computed: {
             salesPrice() {
-                return parseFloat(100 * (1 + this.row.rate)).toFixed(0)
+                return parseFloat(100 * (1 + this.memberType.rate)).toFixed(0)
             }
         },
         methods: {
@@ -54,6 +54,27 @@
                         this.memberType = response.data.data.memberType
                     } else {
                         throw new Error('读取会员信息错误')
+                    }
+                }).catch((error) => {
+                    this.$Message.error(error)
+                })
+            },
+            btSave() {
+                console.log(this.memberType)
+                apiUpdateMemberType({
+                    memberTypeName: this.memberType.name,
+                    memberTypeFee: this.memberType.fee,
+                    memberTypeRate: this.memberType.rate,
+                    memberTypeRemark: this.memberType.remark,
+                    memberTypeId: this.memberType.memberTypeId,
+                }).then((response) => {
+                    if (response.data.code === 0) {
+                        this.$Message.success('保存成功')
+                        this.$router.push({
+                            name: 'memberTypeList'
+                        })
+                    } else {
+                        throw new Error('保存失败')
                     }
                 }).catch((error) => {
                     this.$Message.error(error)

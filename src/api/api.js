@@ -52,6 +52,22 @@ export const apiGetMemberType = params => {
   })
 }
 
+export const apiUpdateMemberType = params => {
+  return axios.post(`${host}/admin/updateMemberType`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
+export const apiDeleteMemberType = params => {
+  return axios.post(`${host}/admin/deleteMemberType`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
 export const apiListAllUser = params => {
   return axios.post(`${host}/admin/listAllUser`, params, {
     headers: {
