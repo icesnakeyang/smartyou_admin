@@ -16,71 +16,89 @@
       </FormItem>
     </Form>
     <Divider></Divider>
-    <Table :columns="columns1" :data="data1"></Table>
+    <Table :columns="columns" :data="trainOrders">
+      <template slot-scope="{row,index}" slot="action">
+        <Button type="primary" size="small" @click="show(row)">详情</Button>
+        <Button type="error" size="small" @click="remove(row)">删除</Button>
+      </template>
+    </Table>
+    <template>
+      <Page :total="totalOrders" :page-size="pageSize" @on-change="onPage"/>
+    </template>
   </div>
 </template>
 
 <script>
-  import {apiListAllApiTrainOrder} from "../../api/api";
+    import {apiListAllApiTrainOrder} from "../../api/api";
 
     export default {
         name: "trainBookingList",
         data() {
             return {
                 searchKey: '',
-                columns1: [
+                columns: [
                     {
-                        title: 'Name',
-                        key: 'name'
+                        title: '订单号',
+                        key: 'ordernumber'
                     },
                     {
-                        title: 'Age',
-                        key: 'age'
+                        title:'订单价格',
+                        key:'payprice',
+                        sortable:true
                     },
                     {
-                        title: 'Address',
-                        key: 'address'
+                        title: '日期',
+                        key: 'fromdate',
+                        sortable: true
+                    },
+                    {
+                        title: '始发站',
+                        key: 'fromstation'
+                    },
+                    {
+                        title: '终点站',
+                        key: 'tostation'
+                    },
+                    {
+                        title: '车次',
+                        key: 'trainno'
+                    },
+                    {
+                        title: '状态',
+                        key: 'orderstatusmsg',
+                        sortable: true
+                    },
+                    {
+                        title: '订票时间',
+                        key: 'createtime',
+                        sortable: true
+                    },
+                    {
+                        title:'操作',
+                        slot:'action'
                     }
                 ],
                 trainOrders: [],
-                data1: [
-                    {
-                        name: 'John Brown',
-                        age: 18,
-                        address: 'New York No. 1 Lake Park',
-                        date: '2016-10-03'
-                    },
-                    {
-                        name: 'Jim Green',
-                        age: 24,
-                        address: 'London No. 1 Lake Park',
-                        date: '2016-10-01'
-                    },
-                    {
-                        name: 'Joe Black',
-                        age: 30,
-                        address: 'Sydney No. 1 Lake Park',
-                        date: '2016-10-02'
-                    },
-                    {
-                        name: 'Jon Snow',
-                        age: 26,
-                        address: 'Ottawa No. 2 Lake Park',
-                        date: '2016-10-04'
-                    }
-                ]
+                totalPage: 1,
+                totalOrders: 0,
+                page: 1,
+                pageSize: 20
             }
         },
         methods: {
             loadAllData() {
                 apiListAllApiTrainOrder({
-                    pageIndex: 1,
-                    pageSize: 20
+                    pageIndex: this.page,
+                    pageSize: this.pageSize
                 }).then((response) => {
-                  console.log(response)
+                    console.log(response)
                     if (response.data.code === 0) {
-                        this.trainOrders = response.data.data.data
+                        this.trainOrders = response.data.data.result.orders
+                        this.totalPage = response.data.data.result.totalPage
+                        this.totalOrders = response.data.data.result.totalCount
+                        this.page = response.data.data.result.page
                         console.log('读取火车票订单成功')
+                        console.log(this.totalOrders)
                     } else {
                         this.$Message.error('读取火车票订单失败')
                     }
@@ -90,6 +108,24 @@
             },
             btSearch() {
                 console.log('搜搜')
+            },
+            onPage(e) {
+                console.log(this.page)
+                console.log(e)
+                this.page = e
+                this.loadAllData()
+            },
+            show(row){
+                console.log(row)
+                this.$router.push({
+                    name:'trainOrderDetail',
+                    params:{
+                        orderId:row.id
+                    }
+                })
+            },
+            remove(index){
+                console.log(index)
             }
         },
         mounted() {

@@ -89,5 +89,17 @@ export const apiListSpecialPriceTour = params => {
 }
 
 export const apiListAllApiTrainOrder = params => {
-  return axios.post(`${host}/admin/listAllApiTrainOrder`, params)
+  return axios.post(`${host}/admin/listAllApiTrainOrder`, params,{
+    headers:{
+      token:store.state.gogo_smartyou_token
+    }
+  })
+}
+
+export const apiGetTrainOrderDetail = params => {
+  return axios.post(`${host}/admin/getTrainOrderDetail`, params,{
+    headers:{
+      token:store.state.gogo_smartyou_token
+    }
+  })
 }

@@ -17,6 +17,7 @@ import newTour from "../pages/tour/newTour";
 import memberTypeList from "../pages/member/memberTypeList";
 import createMemberType from "../pages/member/createMemberType";
 import editMemberType from "@/pages/member/editMemberType";
+import trainOrderDetail from "../pages/train/trainOrderDetail";
 
 Vue.use(Router)
 
@@ -132,6 +133,16 @@ const router = new Router({
             sider: adminSider,
             content: editMemberType,
             footer: baseFooter
+          }
+        },
+        {
+          path:'trainOrderDetail',
+          name:'trainOrderDetail',
+          components:{
+            header:baseHeader,
+            sider:adminSider,
+            content:trainOrderDetail,
+            footer:baseFooter
           }
         }
       ]
