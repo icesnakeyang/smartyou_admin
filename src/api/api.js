@@ -87,3 +87,7 @@ export const apiCreateTour = params => {
 export const apiListSpecialPriceTour = params => {
   return axios.post(`${host}/tour/listSpecialPriceTour`, params)
 }
+
+export const apiListAllApiTrainOrder = params => {
+  return axios.post(`${host}/admin/listAllApiTrainOrder`, params)
+}

@@ -21,7 +21,7 @@
 </template>
 
 <script>
-    import {apiListAllTrainOrder} from "../../api/api";
+  import {apiListAllApiTrainOrder} from "../../api/api";
 
     export default {
         name: "trainBookingList",
@@ -73,10 +73,11 @@
         },
         methods: {
             loadAllData() {
-                apiListAllTrainOrder({
+                apiListAllApiTrainOrder({
                     pageIndex: 1,
                     pageSize: 20
                 }).then((response) => {
+                  console.log(response)
                     if (response.data.code === 0) {
                         this.trainOrders = response.data.data.data
                         console.log('读取火车票订单成功')
