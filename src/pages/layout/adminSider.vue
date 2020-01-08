@@ -70,7 +70,7 @@
       <MenuItem name="menuListMemberType">会员类型</MenuItem>
       <MenuItem name="menuCreateMemberType">创建会员类型</MenuItem>
     </Submenu>
-
+    <Submenu name="menuMentainace"
   </div>
 </template>
 
