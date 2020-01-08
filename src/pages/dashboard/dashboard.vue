@@ -15,7 +15,7 @@
           <h3>火车票订单</h3>
         </div>
         <div class="gogoboard-content" style="background: #62c27e">
-          <h2>2240</h2>
+          <h2>{{totalTrainOrder}}</h2>
         </div>
       </Col>
       <Col span="6" style="padding: 10px">
@@ -41,13 +41,14 @@
 </template>
 
 <script>
-    import {apiStatisticUsers} from "../../api/api";
+    import {apiStatisticTrain, apiStatisticUsers} from "../../api/api";
 
     export default {
         name: "dashboard",
         data() {
             return {
-                totalUser: 0
+                totalUser: 0,
+                totalTrainOrder:0
             }
         },
         methods: {
@@ -58,10 +59,21 @@
                     if (response.data.code === 0) {
                         this.totalUser = response.data.data.totalUser
                     } else {
-                        this.$Message.error('统计信息错误')
+                        this.$Message.error('统计失败')
                     }
                 }).catch((error) => {
-                    this.$Message.error('统计信息错误')
+                    this.$Message.error('统计失败')
+                })
+
+                apiStatisticTrain({}).then((response)=>{
+                    console.log(response)
+                    if(response.data.code===0){
+                        this.totalTrainOrder=response.data.data.totalTrainOrder
+                    }else {
+                        this.$Message.error('统计失败')
+                    }
+                }).catch((error)=>{
+                    this.$Message.error('统计失败')
                 })
             }
         },

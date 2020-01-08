@@ -103,3 +103,11 @@ export const apiGetTrainOrderDetail = params => {
     }
   })
 }
+
+export const apiStatisticTrain = params => {
+  return axios.post(`${host}/admin/statisticTrain`, params,{
+    headers:{
+      token:store.state.gogo_smartyou_token
+    }
+  })
+}
