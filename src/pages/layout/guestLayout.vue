@@ -111,6 +111,11 @@
                         name:'createMemberType'
                     })
                 }
+                if(name==='menuMaintainTrainOrder'){
+                    this.$router.push({
+                        name:'trainOrderMaintain'
+                    })
+                }
             }
         }
     }

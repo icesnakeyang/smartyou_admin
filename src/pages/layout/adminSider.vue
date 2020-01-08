@@ -70,7 +70,13 @@
       <MenuItem name="menuListMemberType">会员类型</MenuItem>
       <MenuItem name="menuCreateMemberType">创建会员类型</MenuItem>
     </Submenu>
-    <Submenu name="menuMentainace"
+    <Submenu name="menuMaintain">
+      <template slot="title">
+        <Icon type="md-settings"/>
+        系统维护
+      </template>
+      <MenuItem name="menuMaintainTrainOrder">火车票订单维护</MenuItem>
+    </Submenu>
   </div>
 </template>
 

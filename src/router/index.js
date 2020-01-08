@@ -18,6 +18,7 @@ import memberTypeList from "../pages/member/memberTypeList";
 import createMemberType from "../pages/member/createMemberType";
 import editMemberType from "@/pages/member/editMemberType";
 import trainOrderDetail from "../pages/train/trainOrderDetail";
+import trainOrderMaintain from "../pages/maintain/trainOrderMaintain";
 
 Vue.use(Router)
 
@@ -142,6 +143,16 @@ const router = new Router({
             header:baseHeader,
             sider:adminSider,
             content:trainOrderDetail,
+            footer:baseFooter
+          }
+        },
+        {
+          path:'trainOrderMaintain',
+          name:'trainOrderMaintain',
+          components:{
+            header:baseHeader,
+            sider:adminSider,
+            content:trainOrderMaintain,
             footer:baseFooter
           }
         }
