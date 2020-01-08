@@ -12,10 +12,10 @@
       </Col>
       <Col span="6" style="padding: 10px">
         <div class="gogoboard-header" style="background: #62c27e">
-          <h3>火车票订单</h3>
+          <h3>火车票订单（接口/本地）</h3>
         </div>
         <div class="gogoboard-content" style="background: #62c27e">
-          <h2>{{totalTrainOrder}}</h2>
+          <h2>{{totalTrainOrderApi}}/{{totalTrainOrderLocal}}</h2>
         </div>
       </Col>
       <Col span="6" style="padding: 10px">
@@ -48,7 +48,8 @@
         data() {
             return {
                 totalUser: 0,
-                totalTrainOrder:0
+                totalTrainOrderApi:0,
+                totalTrainOrderLocal:0,
             }
         },
         methods: {
@@ -68,7 +69,8 @@
                 apiStatisticTrain({}).then((response)=>{
                     console.log(response)
                     if(response.data.code===0){
-                        this.totalTrainOrder=response.data.data.totalTrainOrder
+                        this.totalTrainOrderApi=response.data.data.totalTrainOrderApi
+                        this.totalTrainOrderLocal=response.data.data.totalTrainOrderLocal
                     }else {
                         this.$Message.error('统计失败')
                     }
