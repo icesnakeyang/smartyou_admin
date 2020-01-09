@@ -27,7 +27,6 @@ export const apiListAllTrainOrder = params => {
   })
 }
 
-
 export const apiCreateMemberType = params => {
   return axios.post(`${host}/admin/createMemberType`, params, {
     headers: {
@@ -106,6 +105,14 @@ export const apiGetTrainOrderDetail = params => {
 
 export const apiStatisticTrain = params => {
   return axios.post(`${host}/admin/statisticTrain`, params,{
+    headers:{
+      token:store.state.gogo_smartyou_token
+    }
+  })
+}
+
+export const apiSyncTrainOrder = params => {
+  return axios.post(`${host}/admin/syncTrainOrder`, params,{
     headers:{
       token:store.state.gogo_smartyou_token
     }
