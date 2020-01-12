@@ -28,37 +28,40 @@
 </template>
 
 <script>
-  import {apiGetTourDetail} from "@/api/api";
+    import {apiGetTourDetail} from "@/api/api";
 
-  export default {
-    name: "tourDetail",
-    data() {
-      return {
-        tour: {}
-      }
-    },
-    methods: {
-      loadAllData() {
-        console.log(this.$route.params.tourId)
-        apiGetTourDetail({
-          tourId: this.$route.params.tourId
-        }).then((response) => {
-          console.log(response)
-          if (response.data.code === 0) {
-            this.tour=response.data.data.tour
-          } else {
-            throw new Error('读取数据失败')
-          }
-        }).catch((error) => {
-          console.log(error)
-          this.$Message.error(error)
-        })
-      }
-    },
-    mounted() {
-      this.loadAllData()
+    export default {
+        name: "tourDetail",
+        data() {
+            return {
+                tour: {}
+            }
+        },
+        methods: {
+            loadAllData() {
+                console.log(this.$route.params.tourId)
+                apiGetTourDetail({
+                    tourId: this.$route.params.tourId
+                }).then((response) => {
+                    console.log(response)
+                    if (response.data.code === 0) {
+                        this.tour = response.data.data.tour
+                    } else {
+                        throw new Error('读取数据失败')
+                    }
+                }).catch((error) => {
+                    console.log(error)
+                    this.$Message.error(error)
+                })
+            },
+            saveTour() {
+
+            }
+        },
+        mounted() {
+            this.loadAllData()
+        }
     }
-  }
 </script>
 
 <style scoped>

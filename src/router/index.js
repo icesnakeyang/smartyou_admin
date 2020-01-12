@@ -20,6 +20,7 @@ import editMemberType from "@/pages/member/editMemberType";
 import trainOrderDetail from "../pages/train/trainOrderDetail";
 import trainOrderMaintain from "../pages/maintain/trainOrderMaintain";
 import tourDetail from "@/pages/tour/tourDetail";
+import testPic from "../pages/tour/testPic";
 
 Vue.use(Router)
 
@@ -164,6 +165,16 @@ const router = new Router({
             header:baseHeader,
             sider:adminSider,
             content:tourDetail,
+            footer:baseFooter
+          }
+        },
+        {
+          path:'testPic',
+          name:'testPic',
+          components:{
+            header:baseHeader,
+            sider:adminSider,
+            content:testPic,
             footer:baseFooter
           }
         }

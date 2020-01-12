@@ -37,6 +37,7 @@
       <MenuItem name="menuTourDashboard">控制台</MenuItem>
       <MenuItem name="menuTourList">旅游线路列表</MenuItem>
       <MenuItem name="menuNewTour">创建旅游线路</MenuItem>
+      <MenuItem name="menuTestPic">测试图片</MenuItem>
     </Submenu>
     <Submenu name="7">
       <template slot="title">

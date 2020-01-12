@@ -116,6 +116,11 @@
                         name:'trainOrderMaintain'
                     })
                 }
+                if(name==='menuTestPic'){
+                    this.$router.push({
+                        name:'testPic'
+                    })
+                }
             }
         }
     }
