@@ -118,3 +118,11 @@ export const apiSyncTrainOrder = params => {
     }
   })
 }
+
+export const apiGetTourDetail = params => {
+  return axios.post(`${host}/tour/getTourDetail`, params,{
+    headers:{
+      token:store.state.gogo_smartyou_token
+    }
+  })
+}

@@ -19,6 +19,7 @@ import createMemberType from "../pages/member/createMemberType";
 import editMemberType from "@/pages/member/editMemberType";
 import trainOrderDetail from "../pages/train/trainOrderDetail";
 import trainOrderMaintain from "../pages/maintain/trainOrderMaintain";
+import tourDetail from "@/pages/tour/tourDetail";
 
 Vue.use(Router)
 
@@ -153,6 +154,16 @@ const router = new Router({
             header:baseHeader,
             sider:adminSider,
             content:trainOrderMaintain,
+            footer:baseFooter
+          }
+        },
+        {
+          path:'tourDetail',
+          name:'tourDetail',
+          components:{
+            header:baseHeader,
+            sider:adminSider,
+            content:tourDetail,
             footer:baseFooter
           }
         }
