@@ -88,49 +88,67 @@ export const apiListSpecialPriceTour = params => {
 }
 
 export const apiListAllApiTrainOrder = params => {
-  return axios.post(`${host}/admin/listAllApiTrainOrder`, params,{
-    headers:{
-      token:store.state.gogo_smartyou_token
+  return axios.post(`${host}/admin/listAllApiTrainOrder`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
     }
   })
 }
 
 export const apiGetTrainOrderDetail = params => {
-  return axios.post(`${host}/admin/getTrainOrderDetail`, params,{
-    headers:{
-      token:store.state.gogo_smartyou_token
+  return axios.post(`${host}/admin/getTrainOrderDetail`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
     }
   })
 }
 
 export const apiStatisticTrain = params => {
-  return axios.post(`${host}/admin/statisticTrain`, params,{
-    headers:{
-      token:store.state.gogo_smartyou_token
+  return axios.post(`${host}/admin/statisticTrain`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
     }
   })
 }
 
 export const apiSyncTrainOrder = params => {
-  return axios.post(`${host}/admin/syncTrainOrder`, params,{
-    headers:{
-      token:store.state.gogo_smartyou_token
+  return axios.post(`${host}/admin/syncTrainOrder`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
     }
   })
 }
 
 export const apiGetTourDetail = params => {
-  return axios.post(`${host}/tour/getTourDetail`, params,{
-    headers:{
-      token:store.state.gogo_smartyou_token
+  return axios.post(`${host}/tour/getTourDetail`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
     }
   })
 }
 
-export const apiListRentVehicle=params=>{
-  return axios.post(`${host}/admin/listRentVehicle`, params,{
-    headers:{
-      token:store.state.gogo_smartyou_token
+export const apiListRentVehicle = params => {
+  return axios.post(`${host}/admin/listRentVehicle`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
     }
   })
 }
+
+export const apiGetRentVehicle = params => {
+  return axios.post(`${host}/admin/getRentVehicle`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
+export const apiProcessRentVehicle = params => {
+  return axios.post(`${host}/admin/processRentVehicle`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
+

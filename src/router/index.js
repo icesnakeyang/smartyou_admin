@@ -20,8 +20,9 @@ import editMemberType from "@/pages/member/editMemberType";
 import trainOrderDetail from "../pages/train/trainOrderDetail";
 import trainOrderMaintain from "../pages/maintain/trainOrderMaintain";
 import tourDetail from "@/pages/tour/tourDetail";
-import testPic from "../pages/tour/testPic";
+// import testPic from "../pages/tour/testPic";
 import rentVehicleOrderList from "../pages/rentVehicle/rentVehicleOrderList";
+import rentVehicleOrderDetail from "../pages/rentVehicle/rentVehicleOrderDetail";
 
 Vue.use(Router)
 
@@ -169,16 +170,16 @@ const router = new Router({
             footer:baseFooter
           }
         },
-        {
-          path:'testPic',
-          name:'testPic',
-          components:{
-            header:baseHeader,
-            sider:adminSider,
-            content:testPic,
-            footer:baseFooter
-          }
-        },
+        // {
+        //   path:'testPic',
+        //   name:'testPic',
+        //   components:{
+        //     header:baseHeader,
+        //     sider:adminSider,
+        //     content:testPic,
+        //     footer:baseFooter
+        //   }
+        // },
         {
           path:'rentVehicleOrderList',
           name:'rentVehicleOrderList',
@@ -186,6 +187,16 @@ const router = new Router({
             header:baseHeader,
             sider:adminSider,
             content:rentVehicleOrderList,
+            footer:baseFooter
+          }
+        },
+        {
+          path:'rentVehicleOrderDetail',
+          name:'rentVehicleOrderDetail',
+          components:{
+            header:baseHeader,
+            sider:adminSider,
+            content:rentVehicleOrderDetail,
             footer:baseFooter
           }
         }

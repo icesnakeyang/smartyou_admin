@@ -7,20 +7,20 @@
       <p slot="title">包车订单</p>
       <Table border :columns="col1" :data="orders">
       </Table>
+      <div style="margin-top: 10px">
+        <Page :total="total" :current="pageIndex" show-total
+              :page-size="pageSize" @on-change="onTablePage"/>
+      </div>
     </Card>
   </div>
 </template>
 
 <script>
     import {apiListRentVehicle} from "../../api/api";
-    import RentVehicleOrderListRow from './rentVehicleOrderListRow'
     import moment from "moment";
 
     export default {
         name: "rentVehicleOrderList",
-        components: {
-            RentVehicleOrderListRow
-        },
         data() {
             return {
                 orders: [],
@@ -28,7 +28,7 @@
                     {
                         title: '预订时间',
                         key: 'createTime',
-                        render:(h, params)=>{
+                        render: (h, params) => {
                             return h('div', [
                                 h('span', moment(params.row.createTime).format('YYYY-MM-DD HH:mm'))
                             ])
@@ -47,10 +47,6 @@
                         key: 'passengerNum'
                     },
                     {
-                        title: '说明',
-                        key: 'remark'
-                    },
-                    {
                         title: '联系人',
                         key: 'contactName'
                     },
@@ -63,40 +59,62 @@
                         key: 'statusMsg'
                     },
                     {
-                        title: '管理员处理时间',
-                        key: 'createTime',
+                        title: '操作',
+                        key: 'action',
+                        align: 'center',
                         render: (h, params) => {
                             return h('div', [
-                                h('Icon', {
+                                h('Button', {
                                     props: {
-                                        type: 'person'
+                                        type: 'primary',
+                                        size: 'small'
+                                    },
+                                    style: {
+                                        marginRight: '5px'
+                                    },
+                                    on: {
+                                        click: () => {
+                                            this.btDetail(params.row)
+                                        }
                                     }
-                                }),
-                                h('strong', moment(params.row.createTime).format('YYYY-MM-DD HH:mm'))
+                                }, '详情')
                             ])
                         }
                     }
-                ]
+                ],
+                total: 0,
+                pageIndex: 1,
+                pageSize:20
             }
         },
         methods: {
             loadAllData() {
                 let params = {
-                    pageIndex: 1,
-                    pageSize: 100
+                    pageIndex: this.pageIndex,
+                    pageSize: this.pageSize
                 }
                 apiListRentVehicle(params).then((response) => {
-                    console.log(response.data.data.rentVehicles)
                     if (response.data.code === 0) {
-                        console.log(1)
                         this.orders = response.data.data.rentVehicles
-                        console.log(this.orders)
+                        this.total = response.data.data.total
                     } else {
                         throw new Error('读取数据错误')
                     }
                 }).catch((error) => {
                     this.$Message.error(error)
                 })
+            },
+            btDetail(row) {
+                this.$router.push({
+                    name: 'rentVehicleOrderDetail',
+                    params: {
+                        rentVehicleId: row.rentVehicleId
+                    }
+                })
+            },
+            onTablePage(page) {
+                this.pageIndex = page
+                this.loadAllData()
             }
         },
         mounted() {
