@@ -121,6 +121,11 @@
                         name:'testPic'
                     })
                 }
+                if(name==='menuRentVehicleOrder'){
+                    this.$router.push(({
+                        name:'rentVehicleOrderList'
+                    }))
+                }
             }
         }
     }

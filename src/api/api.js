@@ -126,3 +126,11 @@ export const apiGetTourDetail = params => {
     }
   })
 }
+
+export const apiListRentVehicle=params=>{
+  return axios.post(`${host}/admin/listRentVehicle`, params,{
+    headers:{
+      token:store.state.gogo_smartyou_token
+    }
+  })
+}

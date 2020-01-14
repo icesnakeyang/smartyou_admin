@@ -55,6 +55,13 @@
       <MenuItem name="8-1">Option 1</MenuItem>
       <MenuItem name="8-2">Option 2</MenuItem>
     </Submenu>
+    <Submenu name=menuRentVehicle>
+      <template slot="title">
+        <Icon type="ios-analytics"></Icon>
+        包车管理
+      </template>
+      <MenuItem name="menuRentVehicleOrder">包车订单</MenuItem>
+    </Submenu>
     <Submenu name="9">
       <template slot="title">
         <Icon type="ios-analytics"></Icon>
