@@ -45,6 +45,9 @@
       @on-ok="btMatchVehicle"
     >
       <Form>
+        <FormItem label="车辆型号">
+          <Input v-model="order.vehicleType"></Input>
+        </FormItem>
         <FormItem label="车牌号">
           <Input v-model="order.vehicleNo"></Input>
         </FormItem>
@@ -136,6 +139,7 @@
                 console.log(this.order)
                 let params = {
                     rentVehicleId: this.order.rentVehicleId,
+                    vehicleType:this.order.vehicleType,
                     vehicleNo: this.order.vehicleNo,
                     driverName: this.order.driverName,
                     driverPhone: this.order.driverPhone,
