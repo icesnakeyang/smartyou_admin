@@ -25,6 +25,7 @@
       multiple
       type="drag"
       action="//localhost:8090/tools/tourLogoImgUpload"
+      :headers="{token:token}"
       style="display: inline-block;width:58px;">
       <div style="width: 58px;height:58px;line-height: 58px;">
         <Icon type="ios-camera" size="20"></Icon>
@@ -56,6 +57,11 @@
                 uploadList: []
             }
         },
+        computed:{
+            token(){
+                return this.$store.state.gogo_smartyou_token
+            }
+        },
         methods: {
             handleView(name) {
                 this.imgName = name;
@@ -65,9 +71,11 @@
                 const fileList = this.$refs.upload.fileList;
                 this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
             },
-            handleSuccess(res, file) {
-                file.url = 'https://o5wwk8baw.qnssl.com/7eb99afb9d5f317c912f08b5212fd69a/avatar';
-                file.name = '7eb99afb9d5f317c912f08b5212fd69a';
+            handleSuccess(res) {
+                let fileName=res.data.fileLog.filename
+                let fielLogId=res.data.fileLog.fileLogId
+                console.log(fileName)
+                console.log(fielLogId)
             },
             handleFormatError(file) {
                 this.$Notice.warning({
