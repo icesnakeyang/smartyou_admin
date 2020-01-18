@@ -24,7 +24,7 @@
       :before-upload="handleBeforeUpload"
       multiple
       type="drag"
-      action="//localhost:8090/tools/tourLogoImgUpload"
+      action="//www.wegou1688.com:8090/tools/tourLogoImgUpload"
       :headers="{token:token}"
       style="display: inline-block;width:58px;">
       <div style="width: 58px;height:58px;line-height: 58px;">
@@ -32,7 +32,7 @@
       </div>
     </Upload>
     <Modal title="View Image" v-model="visible">
-      <img :src="'https://o5wwk8baw.qnssl.com/' + imgName + '/large'" v-if="visible" style="width: 100%">
+      <img :src="'https://www.wegou1688.com/' + imgName + '/large'" v-if="visible" style="width: 100%">
     </Modal>
   </div>
 </template>

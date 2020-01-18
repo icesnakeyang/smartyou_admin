@@ -57,7 +57,7 @@
           </div>
         </Upload>
         <Modal title="View Image" v-model="visible">
-          <img :src="'https://o5wwk8baw.qnssl.com/' + imgName + '/large'" v-if="visible" style="width: 100%">
+          <img :src="'https://www.wegou1688.com/' + imgName + '/large'" v-if="visible" style="width: 100%">
         </Modal>
       </div>
       <div>
