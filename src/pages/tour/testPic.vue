@@ -4,7 +4,7 @@
       <template v-if="item.status === 'finished'">
         <img :src="item.url">
         <div class="demo-upload-list-cover">
-          <Icon type="ios-eye-outline" @click.native="handleView(item.name)"></Icon>
+          <Icon type="ios-eye-outline" @click.native="handleView(item.url)"></Icon>
           <Icon type="ios-trash-outline" @click.native="handleRemove(item)"></Icon>
         </div>
       </template>
@@ -32,7 +32,7 @@
       </div>
     </Upload>
     <Modal title="View Image" v-model="visible">
-      <img :src="'https://www.wegou1688.com/' + imgName + '/large'" v-if="visible" style="width: 100%">
+      <img :src="imgName" v-if="visible" style="width: 100%">
     </Modal>
   </div>
 </template>
@@ -43,22 +43,14 @@
         data() {
             return {
                 defaultList: [
-                    {
-                        'name': 'a42bdcc1178e62b4694c830f028db5c0',
-                        'url': 'https://o5wwk8baw.qnssl.com/a42bdcc1178e62b4694c830f028db5c0/avatar'
-                    },
-                    {
-                        'name': 'bc7521e033abdd1e92222d733590f104',
-                        'url': 'https://o5wwk8baw.qnssl.com/bc7521e033abdd1e92222d733590f104/avatar'
-                    }
                 ],
                 imgName: '',
                 visible: false,
                 uploadList: []
             }
         },
-        computed:{
-            token(){
+        computed: {
+            token() {
                 return this.$store.state.gogo_smartyou_token
             }
         },
@@ -68,14 +60,35 @@
                 this.visible = true;
             },
             handleRemove(file) {
-                const fileList = this.$refs.upload.fileList;
-                this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
+                console.log(file.name)
+                this.defaultList.splice(this.defaultList.findIndex(item=>item.name===file.name),1)
             },
             handleSuccess(res) {
-                let fileName=res.data.fileLog.filename
-                let fielLogId=res.data.fileLog.fileLogId
+                console.log(res)
+                let fileName = res.data.fileLog.filename
+                let fielLogId = res.data.fileLog.fileLogId
                 console.log(fileName)
                 console.log(fielLogId)
+
+                let item = {
+                    name: fielLogId,
+                    url: fileName
+                }
+
+                let item1 = this.uploadList.pop()
+
+                console.log(item1)
+
+                item1.url=fileName
+                item1.name=fielLogId
+
+                console.log(item1)
+
+                this.uploadList.push(item1)
+
+                console.log(this.uploadList)
+
+                this.defaultList=this.uploadList
             },
             handleFormatError(file) {
                 this.$Notice.warning({
