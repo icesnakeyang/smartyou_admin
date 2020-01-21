@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     gogo_smartyou_token: '' || localStorage.gogo_smartyou_token,
-    gogo_smartyou_username: '' || localStorage.gogo_smartyou_username
+    gogo_smartyou_username: '' || localStorage.gogo_smartyou_username,
+    tourId:'' || localStorage.tourId
   },
   actions: {
     saveToken(ctx, token) {
@@ -17,6 +18,10 @@ export default new Vuex.Store({
     },
     signOut(ctx) {
       ctx.commit('signOut')
+    },
+    saveTourId(ctx, tourId){
+      console.log('dispatch')
+      ctx.commit('saveTourId', tourId)
     }
   },
   mutations: {
@@ -33,6 +38,12 @@ export default new Vuex.Store({
       localStorage.gogo_smartyou_token = ''
       state.gogo_smartyou_username = ''
       localStorage.gogo_smartyou_username = ''
+    },
+    saveTourId(state, tourId){
+      console.log('commit')
+      console.log(tourId)
+      state.tourId=tourId
+      localStorage.tourId=tourId
     }
   }
 })

@@ -26,82 +26,79 @@
 </template>
 
 <script>
-  import {apiListSpecialPriceTour} from "../../api/api";
+    import {apiListSpecialPriceTour} from "../../api/api";
 
-  export default {
-    name: "tourList",
-    data() {
-      return {
-        tourList: [],
-        colListTour: [
-          {
-            title: '线路名称',
-            slot: 'name'
-          },
-          {
-            title: '简介',
-            key: 'brief'
-          },
-          {
-            title: '价格',
-            key: 'price'
-          },
-          {
-            title: '状态',
-            key: 'status'
-          },
-          {
-            title: '发布时间',
-            key: 'publishTime'
-          },
-          {
-            title: 'Action',
-            slot: 'action',
-            width: 150,
-            align: 'center'
-          }
-        ],
+    export default {
+        name: "tourList",
+        data() {
+            return {
+                tourList: [],
+                colListTour: [
+                    {
+                        title: '线路名称',
+                        slot: 'name'
+                    },
+                    {
+                        title: '简介',
+                        key: 'brief'
+                    },
+                    {
+                        title: '价格',
+                        key: 'price'
+                    },
+                    {
+                        title: '状态',
+                        key: 'status'
+                    },
+                    {
+                        title: '发布时间',
+                        key: 'publishTime'
+                    },
+                    {
+                        title: 'Action',
+                        slot: 'action',
+                        width: 150,
+                        align: 'center'
+                    }
+                ],
 
-      }
-    },
-    methods: {
-      loadAllData() {
-        apiListSpecialPriceTour({
-          pageIndex: 1,
-          pageSize: 5
-        }).then((response) => {
-          console.log(response)
-          if (response.data.code === 0) {
-            this.tourList = response.data.data.specialTourList
-            console.log(this.tourList)
-          } else {
-            throw new Error('读取数据错误')
-          }
-        }).catch((error) => {
-          this.$Message.error(error)
-        })
-      },
-      btDetail(row) {
-        console.log(row)
-        this.$router.push({
-          name:'tourDetail',
-          params:{
-            tourId:row.tourId
-          }
-        })
-        // this.$Modal.info({
-        //   title: 'User Info',
-        //   content: `Name：${this.data6[index].name}<br>Age：${this.data6[index].age}<br>Address：${this.data6[index].address}`
-        // })
-      },
-      remove(index) {
-        this.data6.splice(index, 1);
-      }
-    },
-    mounted() {
-      this.loadAllData()
+            }
+        },
+        methods: {
+            loadAllData() {
+                apiListSpecialPriceTour({
+                    pageIndex: 1,
+                    pageSize: 5
+                }).then((response) => {
+                    console.log(response)
+                    if (response.data.code === 0) {
+                        this.tourList = response.data.data.specialTourList
+                        console.log(this.tourList)
+                    } else {
+                        throw new Error('读取数据错误')
+                    }
+                }).catch((error) => {
+                    this.$Message.error(error)
+                })
+            },
+            btDetail(row) {
+                this.$router.push({
+                    name: 'tourDetail',
+                    params: {
+                        tourId: row.tourId,
+                        logoFile: row.logoFile,
+                        logoFileLogId: row.logoFileLogId
+                    }
+                })
+            },
+            remove(index) {
+                this.data6.splice(index, 1);
+            }
+        },
+        mounted() {
+            this.loadAllData()
+        }
     }
-  }
 </script>
 
 <style scoped>

@@ -31,7 +31,7 @@
         <Icon type="ios-camera" size="20"></Icon>
       </div>
     </Upload>
-    <Modal title="View Image" v-model="visible">
+    <Modal v-model="visible">
       <img :src="imgName" v-if="visible" style="width: 100%">
     </Modal>
   </div>
@@ -42,16 +42,12 @@
         name: "testPic",
         data() {
             return {
-                defaultList: [
-                ],
+                defaultList: [],
                 imgName: '',
                 visible: false,
-                uploadList: []
+                uploadList: [],
+                tour: {}
             }
-        },
-        props:{
-            code:'',
-            tourId:''
         },
         computed: {
             token() {
@@ -64,38 +60,38 @@
                 this.visible = true;
             },
             handleRemove(file) {
-                this.defaultList.splice(this.defaultList.findIndex(item=>item.name===file.name),1)
-                let params={
-                    action:'delete'
+                this.defaultList.splice(this.defaultList.findIndex(item => item.name === file.name), 1)
+                let params = {
+                    action: 'delete'
                 }
                 this.$emit('event1', params)
+                this.uploadList = this.defaultList
             },
             handleSuccess(res) {
                 let fileName = res.data.fileLog.filename
                 let fielLogId = res.data.fileLog.fileLogId
 
-                let item={}
-                if(this.uploadList.length===0){
-
-                }else{
+                let item = {}
+                if (this.uploadList.length === 0) {
+                } else {
                     item = this.uploadList.pop()
                 }
 
-                item.url=fileName
-                item.name=fielLogId
+                item.url = fileName
+                item.name = fielLogId
+
+                this.uploadList=[]
 
                 this.uploadList.push(item)
 
-                this.defaultList=this.uploadList
+                this.defaultList = this.uploadList
 
-                if(this.code==='logo'){
-                    let params={
-                        fileName:fileName,
-                        fileLogId:fielLogId,
-                        action:'edit'
-                    }
-                    this.$emit('event1', params)
+                let params = {
+                    fileName: fileName,
+                    fileLogId: fielLogId,
+                    action: 'edit'
                 }
+                this.$emit('event1', params)
             },
             handleFormatError(file) {
                 this.$Notice.warning({
@@ -110,17 +106,23 @@
                 });
             },
             handleBeforeUpload() {
-                const check = this.uploadList.length < 5;
-                if (!check) {
-                    this.$Notice.warning({
-                        title: 'Up to five pictures can be uploaded.'
-                    });
-                }
-                return check;
+
             }
         },
         mounted() {
             this.uploadList = this.$refs.upload.fileList;
+        },
+        created() {
+            if (this.$route.params.logoFile) {
+                this.defaultList = [
+                    {
+                        url: this.$route.params.logoFile,
+                        name: this.$route.params.logoFileLogId
+                    }
+                ]
+            }else{
+                console.log('没有图标')
+            }
         }
     }
 </script>

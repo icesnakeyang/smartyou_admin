@@ -7,6 +7,9 @@
       <FormItem label="标题">
         <Input type="text" v-model="tour.title"></Input>
       </FormItem>
+      <FormItem label="主题">
+        <Input type="text" v-model="tour.theme"></Input>
+      </FormItem>
       <FormItem label="简要说明">
         <Input type="text" v-model="tour.brief"></Input>
       </FormItem>
@@ -22,9 +25,14 @@
       <FormItem label="详细内容">
         <Input type="textarea" :maxlength="100" :show-word-limit="true" v-model="tour.detail"></Input>
       </FormItem>
+      <FormItem>
+        <Input type="text" v-model="tour.tourId"></Input>
+      </FormItem>
+
       <Button type="primary" @click="saveTour">保存</Button>
     </Form>
-    <TestPic code="logo" :tourId="tour.tourId" @event1="change($event)"/>
+    <TestPic code="logo"
+             @event1="change($event)"/>
   </div>
 </template>
 
@@ -45,7 +53,6 @@
         },
         methods: {
             loadAllData() {
-                console.log(this.$route.params.tourId)
                 apiGetTourDetail({
                     tourId: this.$route.params.tourId
                 }).then((response) => {
@@ -61,32 +68,40 @@
                 })
             },
             saveTour() {
-                let params={
-            tourId:tour.
-                    ", request.getTourId());
-            in.put("type", request.getType());
-            in.put("title", request.getType());
-            in.put("detail", request.getType());
-            in.put("brief", request.getType());
-            in.put("price", request.getType());
-            in.put("specialPrice", request.getSpecialPrice());
-            in.put("location", request.getLocation());
+                let params = {
+                    tourId: this.tour.tourId,
+                    type: this.tour.type,
+                    title: this.tour.title,
+                    detail: this.tour.detail,
+                    brief: this.tour.brief,
+                    price: this.tour.price,
+                    specialPrice: this.tour.specialPrice,
+                    location: this.tour.location,
+                    logoFile: this.tour.logoFile,
+                    logoFileLogId: this.tour.logoFileLogId,
+                    theme: this.tour.theme
                 }
-                apiUpdateTour(params).then((response)=>{
 
-                }).catch((error)=>{
+                apiUpdateTour(params).then((response) => {
+                    console.log(response)
+                    if (response.data.code === 0) {
+                        this.$Message.success('保存成功')
+                    } else {
+                        throw new Error('保存失败')
+                    }
+                }).catch((error) => {
                     this.$Message.error(error)
                 })
 
             },
-            change(data){
-                if(data.action==='edit') {
+            change(data) {
+                if (data.action === 'edit') {
                     this.tour.logoFile = data.fileName
                     this.tour.logoFileLogId = data.fileLogId
-                }else{
-                    if(data.action==='delete'){
-                        this.tour.logoFile=null
-                        this.tour.logoFileLogId=null
+                } else {
+                    if (data.action === 'delete') {
+                        this.tour.logoFile = null
+                        this.tour.logoFileLogId = null
                     }
                 }
             }
