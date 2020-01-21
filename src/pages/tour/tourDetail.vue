@@ -24,14 +24,20 @@
       </FormItem>
       <Button type="primary" @click="saveTour">保存</Button>
     </Form>
+    <TestPic code="logo" :tourId="tour.tourId" @event1="change($event)"/>
   </div>
 </template>
 
 <script>
     import {apiGetTourDetail} from "@/api/api";
+    import TestPic from "./testPic";
+    import {apiUpdateTour} from "../../api/api";
 
     export default {
         name: "tourDetail",
+        components: {
+            TestPic
+        },
         data() {
             return {
                 tour: {}
@@ -55,7 +61,34 @@
                 })
             },
             saveTour() {
+                let params={
+            tourId:tour.
+                    ", request.getTourId());
+            in.put("type", request.getType());
+            in.put("title", request.getType());
+            in.put("detail", request.getType());
+            in.put("brief", request.getType());
+            in.put("price", request.getType());
+            in.put("specialPrice", request.getSpecialPrice());
+            in.put("location", request.getLocation());
+                }
+                apiUpdateTour(params).then((response)=>{
 
+                }).catch((error)=>{
+                    this.$Message.error(error)
+                })
+
+            },
+            change(data){
+                if(data.action==='edit') {
+                    this.tour.logoFile = data.fileName
+                    this.tour.logoFileLogId = data.fileLogId
+                }else{
+                    if(data.action==='delete'){
+                        this.tour.logoFile=null
+                        this.tour.logoFileLogId=null
+                    }
+                }
             }
         },
         mounted() {

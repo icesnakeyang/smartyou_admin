@@ -1,8 +1,8 @@
 import axios from 'axios'
 import store from '../store/index'
 
-// let host = 'http://localhost:8090'
-let host = 'http://www.wegou1688.com:8090'
+let host = 'http://localhost:8090'
+// let host = 'http://www.wegou1688.com:8090'
 
 export const apiRegister = params => {
   return axios.post(`${host}/admin/register`, params)
@@ -146,6 +146,14 @@ export const apiGetRentVehicle = params => {
 
 export const apiProcessRentVehicle = params => {
   return axios.post(`${host}/admin/processRentVehicle`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
+export const apiUpdateTour = params => {
+  return axios.post(`${host}/tour/updateTour`, params, {
     headers: {
       token: store.state.gogo_smartyou_token
     }

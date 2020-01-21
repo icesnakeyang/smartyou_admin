@@ -49,6 +49,10 @@
                 uploadList: []
             }
         },
+        props:{
+            code:'',
+            tourId:''
+        },
         computed: {
             token() {
                 return this.$store.state.gogo_smartyou_token
@@ -60,35 +64,38 @@
                 this.visible = true;
             },
             handleRemove(file) {
-                console.log(file.name)
                 this.defaultList.splice(this.defaultList.findIndex(item=>item.name===file.name),1)
+                let params={
+                    action:'delete'
+                }
+                this.$emit('event1', params)
             },
             handleSuccess(res) {
-                console.log(res)
                 let fileName = res.data.fileLog.filename
                 let fielLogId = res.data.fileLog.fileLogId
-                console.log(fileName)
-                console.log(fielLogId)
 
-                let item = {
-                    name: fielLogId,
-                    url: fileName
+                let item={}
+                if(this.uploadList.length===0){
+
+                }else{
+                    item = this.uploadList.pop()
                 }
 
-                let item1 = this.uploadList.pop()
+                item.url=fileName
+                item.name=fielLogId
 
-                console.log(item1)
-
-                item1.url=fileName
-                item1.name=fielLogId
-
-                console.log(item1)
-
-                this.uploadList.push(item1)
-
-                console.log(this.uploadList)
+                this.uploadList.push(item)
 
                 this.defaultList=this.uploadList
+
+                if(this.code==='logo'){
+                    let params={
+                        fileName:fileName,
+                        fileLogId:fielLogId,
+                        action:'edit'
+                    }
+                    this.$emit('event1', params)
+                }
             },
             handleFormatError(file) {
                 this.$Notice.warning({
