@@ -2,7 +2,7 @@ import axios from 'axios'
 import store from '../store/index'
 
 let host = 'http://localhost:8090'
-// let host = 'http://www.wegou1688.com:8090'
+// let host = 'https://www.wegou1688.com'
 
 export const apiRegister = params => {
   return axios.post(`${host}/admin/register`, params)
@@ -156,6 +156,14 @@ export const apiUpdateTour = params => {
   return axios.post(`${host}/tour/updateTour`, params, {
     headers: {
       token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
+export const apiListTourOrder=params=>{
+  return axios.post(`${host}/admin/tour/listTourOrder`, params,{
+    headers:{
+      token:store.state.gogo_smartyou_token
     }
   })
 }

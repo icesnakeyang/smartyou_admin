@@ -126,6 +126,11 @@
                         name:'rentVehicleOrderList'
                     }))
                 }
+                if(name==='menuTourOrderList'){
+                    this.$router.push({
+                        name:'tourOrderList'
+                    })
+                }
             }
         }
     }
