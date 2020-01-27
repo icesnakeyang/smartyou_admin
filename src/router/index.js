@@ -24,6 +24,7 @@ import testPic from "../pages/tour/testPic";
 import rentVehicleOrderList from "../pages/rentVehicle/rentVehicleOrderList";
 import rentVehicleOrderDetail from "../pages/rentVehicle/rentVehicleOrderDetail";
 import tourOrderList from "../pages/tour/tourOrder/tourOrderList";
+import tourOrderDetail from "../pages/tour/tourOrder/tourOrderDetail";
 
 Vue.use(Router)
 
@@ -208,6 +209,16 @@ const router = new Router({
             header:baseHeader,
             sider:adminSider,
             content:tourOrderList,
+            footer:baseFooter
+          }
+        },
+        {
+          path:'tourOrderDetail',
+          name:'tourOrderDetail',
+          components:{
+            header:baseHeader,
+            sider:adminSider,
+            content:tourOrderDetail,
             footer:baseFooter
           }
         }

@@ -37,34 +37,34 @@
     </Row>
     <Row type="flex" justify="center" align="top" class="code-row-bg">
       <Col span="6" style="padding: 10px">
-        <div class="gogoboard-header" style="background: #54729d">
+        <div class="gogoboard-header" style="background: #ff6f01">
           <h3>旅游线路订单</h3>
         </div>
-        <div class="gogoboard-content" style="background: #54729d">
+        <div class="gogoboard-content" style="background: #ff7060">
           <h2>{{totalTourOrder}}</h2>
         </div>
       </Col>
       <Col span="6" style="padding: 10px">
-        <div class="gogoboard-header" style="background: #62c27e">
+        <div class="gogoboard-header" style="background: #c2189f">
           <h3>总收入</h3>
         </div>
-        <div class="gogoboard-content" style="background: #62c27e">
+        <div class="gogoboard-content" style="background: #c220a4">
           <h2>{{totalIncome}}</h2>
         </div>
       </Col>
       <Col span="6" style="padding: 10px">
-        <div class="gogoboard-header" style="background: #ec3a45">
+        <div class="gogoboard-header" style="background: #6974ec">
           <h3>飞机票订单</h3>
         </div>
-        <div class="gogoboard-content" style="background: #ec3a45">
+        <div class="gogoboard-content" style="background: #6974ec">
           <h2>2240</h2>
         </div>
       </Col>
       <Col span="6" style="padding: 10px">
-        <div class="gogoboard-header" style="background: #f3b23d">
+        <div class="gogoboard-header" style="background: #00832e">
           <h3>酒店订单</h3>
         </div>
-        <div class="gogoboard-content" style="background: #f3b23d">
+        <div class="gogoboard-content" style="background: #00832e">
           <h2>2240</h2>
         </div>
       </Col>
@@ -90,7 +90,6 @@
     },
     methods: {
       loadAllData() {
-        console.log(1)
         apiStatisticUsers({}).then((response) => {
           console.log(response)
           if (response.data.code === 0) {

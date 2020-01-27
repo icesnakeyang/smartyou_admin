@@ -184,4 +184,12 @@ export const apiStatisticFinance = params => {
   })
 }
 
+export const apiGetTourOrder = params => {
+  return axios.post(`${host}/admin/tour/getTourOrder`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
 

@@ -102,6 +102,12 @@
             },
             btDetail(row) {
                 console.log(row.tour_order_id)
+                this.$router.push({
+                    name:'tourOrderDetail',
+                    params:{
+                        tourOrderId:row.tour_order_id
+                    }
+                })
             },
             showStatus(status){
                 if(status==='PAID'){
