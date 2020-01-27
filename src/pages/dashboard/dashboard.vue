@@ -35,54 +35,110 @@
         </div>
       </Col>
     </Row>
+    <Row type="flex" justify="center" align="top" class="code-row-bg">
+      <Col span="6" style="padding: 10px">
+        <div class="gogoboard-header" style="background: #54729d">
+          <h3>旅游线路订单</h3>
+        </div>
+        <div class="gogoboard-content" style="background: #54729d">
+          <h2>{{totalTourOrder}}</h2>
+        </div>
+      </Col>
+      <Col span="6" style="padding: 10px">
+        <div class="gogoboard-header" style="background: #62c27e">
+          <h3>总收入</h3>
+        </div>
+        <div class="gogoboard-content" style="background: #62c27e">
+          <h2>{{totalIncome}}</h2>
+        </div>
+      </Col>
+      <Col span="6" style="padding: 10px">
+        <div class="gogoboard-header" style="background: #ec3a45">
+          <h3>飞机票订单</h3>
+        </div>
+        <div class="gogoboard-content" style="background: #ec3a45">
+          <h2>2240</h2>
+        </div>
+      </Col>
+      <Col span="6" style="padding: 10px">
+        <div class="gogoboard-header" style="background: #f3b23d">
+          <h3>酒店订单</h3>
+        </div>
+        <div class="gogoboard-content" style="background: #f3b23d">
+          <h2>2240</h2>
+        </div>
+      </Col>
+    </Row>
     <div style="background: slategray">dashboard</div>
     <div style="background: slategray">dashboard</div>
   </div>
 </template>
 
 <script>
-    import {apiStatisticTrain, apiStatisticUsers} from "../../api/api";
+  import {apiStatisticFinance, apiStatisticTour, apiStatisticTrain, apiStatisticUsers} from "../../api/api";
 
-    export default {
-        name: "dashboard",
-        data() {
-            return {
-                totalUser: 0,
-                totalTrainOrderApi:0,
-                totalTrainOrderLocal:0,
-            }
-        },
-        methods: {
-            loadAllData() {
-                console.log(1)
-                apiStatisticUsers({}).then((response) => {
-                    console.log(response)
-                    if (response.data.code === 0) {
-                        this.totalUser = response.data.data.totalUser
-                    } else {
-                        this.$Message.error('统计失败')
-                    }
-                }).catch((error) => {
-                    this.$Message.error('统计失败')
-                })
+  export default {
+    name: "dashboard",
+    data() {
+      return {
+        totalUser: 0,
+        totalTrainOrderApi: 0,
+        totalTrainOrderLocal: 0,
+        totalTourOrder: 0,
+        totalIncome:0
+      }
+    },
+    methods: {
+      loadAllData() {
+        console.log(1)
+        apiStatisticUsers({}).then((response) => {
+          console.log(response)
+          if (response.data.code === 0) {
+            this.totalUser = response.data.data.totalUser
+          } else {
+            this.$Message.error('统计失败')
+          }
+        }).catch((error) => {
+          this.$Message.error('统计失败')
+        })
 
-                apiStatisticTrain({}).then((response)=>{
-                    console.log(response)
-                    if(response.data.code===0){
-                        this.totalTrainOrderApi=response.data.data.totalTrainOrderApi
-                        this.totalTrainOrderLocal=response.data.data.totalTrainOrderLocal
-                    }else {
-                        this.$Message.error('统计失败')
-                    }
-                }).catch((error)=>{
-                    this.$Message.error('统计失败')
-                })
-            }
-        },
-        mounted() {
-            this.loadAllData()
-        }
+        apiStatisticTrain({}).then((response) => {
+          console.log(response)
+          if (response.data.code === 0) {
+            this.totalTrainOrderApi = response.data.data.totalTrainOrderApi
+            this.totalTrainOrderLocal = response.data.data.totalTrainOrderLocal
+          } else {
+            this.$Message.error('统计失败')
+          }
+        }).catch((error) => {
+          this.$Message.error('统计失败')
+        })
+
+        apiStatisticTour({}).then((response) => {
+          console.log(response)
+          if (response.data.code === 0) {
+            this.totalTourOrder = response.data.data.totalTourOrder
+          } else {
+            throw new Error('统计失败')
+          }
+        }).catch((error) => {
+          this.$Message.error(error)
+        })
+
+        apiStatisticFinance({}).then((response) => {
+          console.log(response)
+          if(response.data.code===0){
+            this.totalIncome=response.data.data.totalIncome
+          }
+        }).catch((error) => {
+          this.$Message.error(error)
+        })
+      }
+    },
+    mounted() {
+      this.loadAllData()
     }
+  }
 </script>
 
 <style scoped>

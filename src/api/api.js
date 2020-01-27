@@ -160,10 +160,26 @@ export const apiUpdateTour = params => {
   })
 }
 
-export const apiListTourOrder=params=>{
-  return axios.post(`${host}/admin/tour/listTourOrder`, params,{
-    headers:{
-      token:store.state.gogo_smartyou_token
+export const apiListTourOrder = params => {
+  return axios.post(`${host}/admin/tour/listTourOrder`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
+export const apiStatisticTour = params => {
+  return axios.post(`${host}/admin/statisticTour`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
+export const apiStatisticFinance = params => {
+  return axios.post(`${host}/admin/statisticFinance`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
     }
   })
 }
