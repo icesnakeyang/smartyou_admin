@@ -192,4 +192,20 @@ export const apiGetTourOrder = params => {
   })
 }
 
+export const apiListGuide = params => {
+  return axios.post(`${host}/admin/guide/listGuide`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
+export const apiGetGuide = params => {
+  return axios.post(`${host}/admin/guide/getGuide`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
 

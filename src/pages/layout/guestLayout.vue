@@ -131,6 +131,11 @@
                         name:'tourOrderList'
                     })
                 }
+                if(name==='menuGuideList'){
+                    this.$router.push({
+                        name:'guideList'
+                    })
+                }
             }
         }
     }

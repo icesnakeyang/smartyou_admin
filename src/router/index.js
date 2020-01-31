@@ -25,6 +25,8 @@ import rentVehicleOrderList from "../pages/rentVehicle/rentVehicleOrderList";
 import rentVehicleOrderDetail from "../pages/rentVehicle/rentVehicleOrderDetail";
 import tourOrderList from "../pages/tour/tourOrder/tourOrderList";
 import tourOrderDetail from "../pages/tour/tourOrder/tourOrderDetail";
+import guideList from "../pages/guide/guideList";
+import guideInfoDetail from "../pages/guide/guideInfoDetail";
 
 Vue.use(Router)
 
@@ -221,10 +223,32 @@ const router = new Router({
             content:tourOrderDetail,
             footer:baseFooter
           }
+        },
+        {
+          path:'guideList',
+          name:'guideList',
+          components:{
+            header:baseHeader,
+            sider:adminSider,
+            content:guideList,
+            footer:baseFooter
+          }
+        },
+        {
+          path:'guideInfoDetail',
+          name:'guideInfoDetail',
+          components:{
+            header:baseHeader,
+            sider:adminSider,
+            content:guideInfoDetail,
+            footer:baseFooter
+          }
         }
       ]
     }]
 })
+
+
 router.beforeEach((to, from, next) => {
   if (!store.state.gogo_smartyou_token) {
     if (to.name === 'register') {
