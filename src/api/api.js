@@ -208,4 +208,20 @@ export const apiGetGuide = params => {
   })
 }
 
+export const apiAgreeGuide = params => {
+  return axios.post(`${host}/admin/guide/agreeGuide`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
+export const apiRejectGuide = params => {
+  return axios.post(`${host}/admin/guide/rejectGuide`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
 
