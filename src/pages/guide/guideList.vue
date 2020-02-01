@@ -114,6 +114,12 @@
                 if(status==='PENDING'){
                     return '等待审核'
                 }
+                if(status==='BANNED'){
+                    return '已禁止'
+                }
+                if(status==='ACTIVE'){
+                    return '正常'
+                }
             },
             onTablePage(page) {
                 this.pageIndex = page

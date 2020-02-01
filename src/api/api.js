@@ -224,4 +224,28 @@ export const apiRejectGuide = params => {
   })
 }
 
+export const apiBbanGuide = params => {
+  return axios.post(`${host}/admin/guide/banGuide`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
+export const apiStatisticGuide = params => {
+  return axios.post(`${host}/admin/guide/statisticGuide`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
+export const apiActiveGuide = params => {
+  return axios.post(`${host}/admin/guide/activeGuide`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
 

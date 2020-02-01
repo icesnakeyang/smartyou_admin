@@ -54,10 +54,10 @@
       </Col>
       <Col span="6" style="padding: 10px">
         <div class="gogoboard-header" style="background: #6974ec">
-          <h3>飞机票订单</h3>
+          <h3>注册导游</h3>
         </div>
         <div class="gogoboard-content" style="background: #6974ec">
-          <h2>2240</h2>
+          <h2>{{totalGuide}}</h2>
         </div>
       </Col>
       <Col span="6" style="padding: 10px">
@@ -75,69 +75,85 @@
 </template>
 
 <script>
-  import {apiStatisticFinance, apiStatisticTour, apiStatisticTrain, apiStatisticUsers} from "../../api/api";
+    import {
+        apiStatisticFinance,
+        apiStatisticGuide,
+        apiStatisticTour,
+        apiStatisticTrain,
+        apiStatisticUsers
+    } from "../../api/api";
 
-  export default {
-    name: "dashboard",
-    data() {
-      return {
-        totalUser: 0,
-        totalTrainOrderApi: 0,
-        totalTrainOrderLocal: 0,
-        totalTourOrder: 0,
-        totalIncome:0
-      }
-    },
-    methods: {
-      loadAllData() {
-        apiStatisticUsers({}).then((response) => {
-          console.log(response)
-          if (response.data.code === 0) {
-            this.totalUser = response.data.data.totalUser
-          } else {
-            this.$Message.error('统计失败')
-          }
-        }).catch((error) => {
-          this.$Message.error('统计失败')
-        })
+    export default {
+        name: "dashboard",
+        data() {
+            return {
+                totalUser: 0,
+                totalTrainOrderApi: 0,
+                totalTrainOrderLocal: 0,
+                totalTourOrder: 0,
+                totalIncome: 0,
+                totalGuide:0
+            }
+        },
+        methods: {
+            loadAllData() {
+                apiStatisticUsers({}).then((response) => {
+                    console.log(response)
+                    if (response.data.code === 0) {
+                        this.totalUser = response.data.data.totalUser
+                    } else {
+                        this.$Message.error('统计失败')
+                    }
+                }).catch((error) => {
+                    this.$Message.error('统计失败')
+                })
 
-        apiStatisticTrain({}).then((response) => {
-          console.log(response)
-          if (response.data.code === 0) {
-            this.totalTrainOrderApi = response.data.data.totalTrainOrderApi
-            this.totalTrainOrderLocal = response.data.data.totalTrainOrderLocal
-          } else {
-            this.$Message.error('统计失败')
-          }
-        }).catch((error) => {
-          this.$Message.error('统计失败')
-        })
+                apiStatisticTrain({}).then((response) => {
+                    console.log(response)
+                    if (response.data.code === 0) {
+                        this.totalTrainOrderApi = response.data.data.totalTrainOrderApi
+                        this.totalTrainOrderLocal = response.data.data.totalTrainOrderLocal
+                    } else {
+                        this.$Message.error('统计失败')
+                    }
+                }).catch((error) => {
+                    this.$Message.error('统计失败')
+                })
 
-        apiStatisticTour({}).then((response) => {
-          console.log(response)
-          if (response.data.code === 0) {
-            this.totalTourOrder = response.data.data.totalTourOrder
-          } else {
-            throw new Error('统计失败')
-          }
-        }).catch((error) => {
-          this.$Message.error(error)
-        })
+                apiStatisticTour({}).then((response) => {
+                    console.log(response)
+                    if (response.data.code === 0) {
+                        this.totalTourOrder = response.data.data.totalTourOrder
+                    } else {
+                        throw new Error('统计失败')
+                    }
+                }).catch((error) => {
+                    this.$Message.error(error)
+                })
 
-        apiStatisticFinance({}).then((response) => {
-          console.log(response)
-          if(response.data.code===0){
-            this.totalIncome=response.data.data.totalIncome
-          }
-        }).catch((error) => {
-          this.$Message.error(error)
-        })
-      }
-    },
-    mounted() {
-      this.loadAllData()
+                apiStatisticFinance({}).then((response) => {
+                    console.log(response)
+                    if (response.data.code === 0) {
+                        this.totalIncome = response.data.data.totalIncome
+                    }
+                }).catch((error) => {
+                    this.$Message.error(error)
+                })
+
+                apiStatisticGuide({}).then((response)=>{
+                    console.log(response)
+                    if(response.data.code===0){
+                        this.totalGuide=response.data.data.totalGuide
+                    }
+                }).catch((error)=>{
+                    this.$Message.error(error)
+                })
+            }
+        },
+        mounted() {
+            this.loadAllData()
+        }
     }
-  }
 </script>
 
 <style scoped>
