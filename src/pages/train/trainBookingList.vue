@@ -91,14 +91,11 @@
                     pageIndex: this.page,
                     pageSize: this.pageSize
                 }).then((response) => {
-                    console.log(response)
                     if (response.data.code === 0) {
                         this.trainOrders = response.data.data.result.orders
                         this.totalPage = response.data.data.result.totalPage
                         this.totalOrders = response.data.data.result.totalCount
                         this.page = response.data.data.result.page
-                        console.log('读取火车票订单成功')
-                        console.log(this.totalOrders)
                     } else {
                         this.$Message.error('读取火车票订单失败')
                     }
@@ -107,16 +104,12 @@
                 })
             },
             btSearch() {
-                console.log('搜搜')
             },
             onPage(e) {
-                console.log(this.page)
-                console.log(e)
                 this.page = e
                 this.loadAllData()
             },
             show(row){
-                console.log(row)
                 this.$router.push({
                     name:'trainOrderDetail',
                     params:{
@@ -125,7 +118,6 @@
                 })
             },
             remove(index){
-                console.log(index)
             }
         },
         mounted() {

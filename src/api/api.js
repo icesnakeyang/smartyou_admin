@@ -248,4 +248,12 @@ export const apiActiveGuide = params => {
   })
 }
 
+export const apiDeleteGuide = params => {
+  return axios.post(`${host}/admin/guide/deleteGuide`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
 

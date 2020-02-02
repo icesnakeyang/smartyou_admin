@@ -43,17 +43,13 @@
         },
         methods:{
             loadAllData(){
-                console.log(this.$route.params.orderId)
                 let params={
                     orderId:this.$route.params.orderId
                 }
                 apiGetTrainOrderDetail(params).then((response)=>{
-                    console.log(response)
                     if(response.data.code===0){
                         this.order=response.data.data.order
                         this.passengerList=this.order.passengers
-                        console.log(this.order)
-                        console.log(this.passengerList)
                     }else{
                         this.$Message.error('读取数据库失败')
                     }

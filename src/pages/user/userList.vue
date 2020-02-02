@@ -75,12 +75,9 @@
                     pageSize: this.pageSize
                 }).then((response) => {
                     if (response.data.code === 0) {
-                        console.log(response)
                         this.users = response.data.data.users
-                        console.log(this.users)
                         this.totalUser = response.data.data.totalUser
                         this.totalPage = response.data.data.totalPage
-                        console.log(this.totalPage)
                     } else {
                         throw new Error('读取用户数据错误')
                     }
@@ -93,7 +90,6 @@
                 this.loadAllData()
             },
             show(item) {
-                console.log(this.users[item])
             },
             remove(index) {
                 this.users.splice(index, 1);

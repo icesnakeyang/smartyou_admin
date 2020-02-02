@@ -99,7 +99,6 @@
                     pageIndex:this.pageIndex,
                     pageSize:this.pageSize
                 }).then((response) => {
-                    console.log(response)
                     if (response.data.code === 0) {
                         this.guideList = response.data.data.guideInfos
                         this.total=response.data.data.total

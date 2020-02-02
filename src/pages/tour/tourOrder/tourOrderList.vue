@@ -90,18 +90,15 @@
                     pageSize: 100
                 }
                 apiListTourOrder(params).then((response) => {
-                    console.log(response)
                     if (response.data.code === 0) {
                         this.tourOrders = response.data.data.tourOrders
                     } else {
                         throw new Error('读取数据库错误')
                     }
                 }).catch((error) => {
-                    console.log(error)
                 })
             },
             btDetail(row) {
-                console.log(row.tour_order_id)
                 this.$router.push({
                     name:'tourOrderDetail',
                     params:{

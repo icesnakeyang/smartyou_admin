@@ -56,14 +56,12 @@
                 apiGetTourDetail({
                     tourId: this.$route.params.tourId
                 }).then((response) => {
-                    console.log(response)
                     if (response.data.code === 0) {
                         this.tour = response.data.data.tour
                     } else {
                         throw new Error('读取数据失败')
                     }
                 }).catch((error) => {
-                    console.log(error)
                     this.$Message.error(error)
                 })
             },
@@ -83,7 +81,6 @@
                 }
 
                 apiUpdateTour(params).then((response) => {
-                    console.log(response)
                     if (response.data.code === 0) {
                         this.$Message.success('保存成功')
                     } else {

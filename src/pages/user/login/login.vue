@@ -40,7 +40,6 @@
           loginName: this.loginName,
           password: this.password
         }).then((response) => {
-          console.log(response)
           if (response.data.code === 0) {
             this.$Message.success('登录成功')
             this.$store.dispatch('saveToken', response.data.data.adminInfo.token)

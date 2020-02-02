@@ -71,7 +71,6 @@
                     })
                 }
                 if (name === 'menuTrainOrder') {
-                    console.log('menu')
                     this.$router.push({
                         name: 'trainBookingList'
                     })

@@ -124,7 +124,6 @@
                     rentVehicleId: this.$route.params.rentVehicleId
                 }
                 apiGetRentVehicle(params).then((response) => {
-                    console.log(response)
                     if (response.data.code === 0) {
                         this.order = response.data.data.rentVehicle
                     } else {
@@ -135,8 +134,6 @@
                 })
             },
             btMatchVehicle() {
-                console.log('match')
-                console.log(this.order)
                 let params = {
                     rentVehicleId: this.order.rentVehicleId,
                     vehicleType:this.order.vehicleType,
@@ -177,7 +174,6 @@
             }
         },
         mounted() {
-            console.log(this.$route.params.rentVehicleId)
             this.loadAllData()
         }
     }

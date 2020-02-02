@@ -55,7 +55,6 @@
                     memberTypeRate: this.memberTypeRate,
                     memberTypeRemark: this.memberTypeRemark
                 }).then((response) => {
-                    console.log(response)
                     if (response.data.code === 0) {
                         this.$Message.success('创建会员类型成功')
                         this.saving = false

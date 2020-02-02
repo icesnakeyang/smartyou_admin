@@ -70,10 +70,8 @@
                     pageIndex: 1,
                     pageSize: 5
                 }).then((response) => {
-                    console.log(response)
                     if (response.data.code === 0) {
                         this.tourList = response.data.data.specialTourList
-                        console.log(this.tourList)
                     } else {
                         throw new Error('读取数据错误')
                     }

@@ -77,7 +77,6 @@
           tourOrderId: this.$route.params.tourOrderId
         }
         apiGetTourOrder(params).then((response) => {
-          console.log(response)
           if (response.data.code === 0) {
             this.title = response.data.data.title
             this.orderPrice = response.data.data.orderPrice
@@ -102,7 +101,6 @@
       }
     },
     mounted() {
-      console.log(this.$route.params.tourOrderId)
       this.loadAllData()
     }
   }

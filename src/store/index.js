@@ -20,7 +20,6 @@ export default new Vuex.Store({
       ctx.commit('signOut')
     },
     saveTourId(ctx, tourId){
-      console.log('dispatch')
       ctx.commit('saveTourId', tourId)
     }
   },
@@ -40,8 +39,6 @@ export default new Vuex.Store({
       localStorage.gogo_smartyou_username = ''
     },
     saveTourId(state, tourId){
-      console.log('commit')
-      console.log(tourId)
       state.tourId=tourId
       localStorage.tourId=tourId
     }

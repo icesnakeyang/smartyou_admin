@@ -98,7 +98,6 @@
         methods: {
             loadAllData() {
                 apiStatisticUsers({}).then((response) => {
-                    console.log(response)
                     if (response.data.code === 0) {
                         this.totalUser = response.data.data.totalUser
                     } else {
@@ -109,7 +108,6 @@
                 })
 
                 apiStatisticTrain({}).then((response) => {
-                    console.log(response)
                     if (response.data.code === 0) {
                         this.totalTrainOrderApi = response.data.data.totalTrainOrderApi
                         this.totalTrainOrderLocal = response.data.data.totalTrainOrderLocal
@@ -121,7 +119,6 @@
                 })
 
                 apiStatisticTour({}).then((response) => {
-                    console.log(response)
                     if (response.data.code === 0) {
                         this.totalTourOrder = response.data.data.totalTourOrder
                     } else {
@@ -132,7 +129,6 @@
                 })
 
                 apiStatisticFinance({}).then((response) => {
-                    console.log(response)
                     if (response.data.code === 0) {
                         this.totalIncome = response.data.data.totalIncome
                     }
@@ -141,7 +137,6 @@
                 })
 
                 apiStatisticGuide({}).then((response)=>{
-                    console.log(response)
                     if(response.data.code===0){
                         this.totalGuide=response.data.data.totalGuide
                     }

@@ -45,11 +45,9 @@
         },
         methods: {
             loadAllData() {
-                console.log(this.$route.params.memberTypeId)
                 apiGetMemberType({
                     memberTypeId: this.$route.params.memberTypeId
                 }).then((response) => {
-                    console.log(response)
                     if (response.data.code === 0) {
                         this.memberType = response.data.data.memberType
                     } else {
@@ -60,7 +58,6 @@
                 })
             },
             btSave() {
-                console.log(this.memberType)
                 apiUpdateMemberType({
                     memberTypeName: this.memberType.name,
                     memberTypeFee: this.memberType.fee,

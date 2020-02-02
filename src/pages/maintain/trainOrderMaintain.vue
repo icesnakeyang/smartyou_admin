@@ -31,7 +31,6 @@
     methods: {
       loadAllData() {
         apiStatisticTrain({}).then((response) => {
-          console.log(response)
           if (response.data.code === 0) {
             this.totalTrainOrderApi = response.data.data.totalTrainOrderApi
             this.totalTrainOrderLocal = response.data.data.totalTrainOrderLocal
@@ -48,7 +47,6 @@
       ok() {
         //同步火车票接口订单
         apiSyncTrainOrder({}).then((response) => {
-          console.log(response)
           if (response.data.code === 0) {
             this.$Message.success('同步成功')
           } else {

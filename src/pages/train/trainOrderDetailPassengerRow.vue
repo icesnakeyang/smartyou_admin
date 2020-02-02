@@ -16,7 +16,6 @@
             item: {}
         },
         mounted() {
-            console.log(this.item)
         }
     }
 </script>

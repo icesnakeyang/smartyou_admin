@@ -109,14 +109,9 @@
             handleSuccess(res) {
                 let fileName = res.data.fileLog.filename
                 let fielLogId = res.data.fileLog.fileLogId
-                console.log(fileName)
-                console.log(fielLogId)
                 this.imgName=fileName
                 this.tour.logoFile=fileName
                 this.tour.logoFileLogId=fielLogId
-
-
-                console.log(this.tour)
             },
             handleBeforeUpload() {
                 const check = this.uploadList.length < 5;
@@ -140,7 +135,6 @@
                 });
             },
             saveTour() {
-                console.log(this.tour)
                 apiCreateTour({
                     type: this.tour.type,
                     title: this.tour.title,
@@ -153,7 +147,6 @@
                     logoFile:this.tour.logoFile,
                     logoFileLogId:this.tour.logoFileLogId
                 }).then((response) => {
-                    console.log(response)
                     if (response.data.code === 0) {
                         this.$Message.success('创建成功')
                     } else {
