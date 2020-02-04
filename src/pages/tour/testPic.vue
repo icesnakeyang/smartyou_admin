@@ -24,7 +24,7 @@
       :before-upload="handleBeforeUpload"
       multiple
       type="drag"
-      action="//www.wegou1688.com:8090/tools/tourLogoImgUpload"
+      action="//https://www.wegou1688.com/tools/tourLogoImgUpload"
       :headers="{token:token}"
       style="display: inline-block;width:58px;">
       <div style="width: 58px;height:58px;line-height: 58px;">
@@ -68,8 +68,9 @@
                 this.uploadList = this.defaultList
             },
             handleSuccess(res) {
-                let fileName = res.data.fileLog.filename
-                let fielLogId = res.data.fileLog.fileLogId
+                console.log(res)
+                let fileName = res.data.filename
+                let fielLogId = res.data.fileLogId
 
                 let item = {}
                 if (this.uploadList.length === 0) {
@@ -113,6 +114,7 @@
             this.uploadList = this.$refs.upload.fileList;
         },
         created() {
+            console.log(this.$route.params)
             if (this.$route.params.logoFile) {
                 this.defaultList = [
                     {

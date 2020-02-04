@@ -56,6 +56,7 @@
                 apiGetTourDetail({
                     tourId: this.$route.params.tourId
                 }).then((response) => {
+                    console.log(response)
                     if (response.data.code === 0) {
                         this.tour = response.data.data.tour
                     } else {
