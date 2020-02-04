@@ -77,7 +77,7 @@ export const apiListAllUser = params => {
 }
 
 export const apiCreateTour = params => {
-  return axios.post(`${host}/tour/createTour`, params, {
+  return axios.post(`${host}/admin/tour/createTour`, params, {
     headers: {
       token: store.state.gogo_smartyou_token
     }
@@ -153,7 +153,7 @@ export const apiProcessRentVehicle = params => {
 }
 
 export const apiUpdateTour = params => {
-  return axios.post(`${host}/tour/updateTour`, params, {
+  return axios.post(`${host}/admin/tour/updateTour`, params, {
     headers: {
       token: store.state.gogo_smartyou_token
     }
