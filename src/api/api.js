@@ -1,8 +1,8 @@
 import axios from 'axios'
 import store from '../store/index'
 
-// let host = 'http://localhost:8090'
-let host = 'https://www.wegou1688.com'
+let host = 'http://localhost:8090'
+// let host = 'https://www.wegou1688.com'
 
 export const apiRegister = params => {
   return axios.post(`${host}/admin/register`, params)
@@ -10,7 +10,6 @@ export const apiRegister = params => {
 export const apiLogin = params => {
   return axios.post(`${host}/admin/login`, params)
 }
-
 
 export const apiStatisticUsers = params => {
   return axios.post(`${host}/admin/statisticUsers`, params, {

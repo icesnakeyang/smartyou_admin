@@ -24,7 +24,7 @@
       :before-upload="handleBeforeUpload"
       multiple
       type="drag"
-      action="//https://www.wegou1688.com/tools/tourLogoImgUpload"
+      action="https://www.wegou1688.com/tools/tourLogoImgUpload"
       :headers="{token:token}"
       style="display: inline-block;width:58px;">
       <div style="width: 58px;height:58px;line-height: 58px;">
@@ -58,6 +58,7 @@
             handleView(name) {
                 this.imgName = name;
                 this.visible = true;
+                console.log(this.imgName)
             },
             handleRemove(file) {
                 this.defaultList.splice(this.defaultList.findIndex(item => item.name === file.name), 1)
@@ -71,6 +72,7 @@
                 console.log(res)
                 let fileName = res.data.filename
                 let fielLogId = res.data.fileLogId
+                this.imgName=fileName
 
                 let item = {}
                 if (this.uploadList.length === 0) {
