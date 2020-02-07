@@ -1,8 +1,8 @@
 import axios from 'axios'
 import store from '../store/index'
 
-let host = 'http://localhost:8090'
-// let host = 'https://www.wegou1688.com'
+// let host = 'http://localhost:8090'
+let host = 'https://www.wegou1688.com'
 
 export const apiRegister = params => {
   return axios.post(`${host}/admin/register`, params)

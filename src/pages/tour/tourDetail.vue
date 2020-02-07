@@ -23,8 +23,18 @@
         <Input type="text" v-model="tour.specialPrice"></Input>
       </FormItem>
       <FormItem label="详细内容">
-        <Input type="textarea" :maxlength="100" :show-word-limit="true" v-model="tour.detail"></Input>
+        <!--        <Input type="textarea" :maxlength="100" :show-word-limit="true" v-model="tour.detail"></Input>-->
       </FormItem>
+
+      <FormItem>
+        <div>
+          <quill-editor v-model="tour.detail"
+                        :options="editorOption"
+                        @change="onEditorChange"
+          ></quill-editor>
+        </div>
+      </FormItem>
+
       <FormItem>
         <Input type="text" v-model="tour.tourId"></Input>
       </FormItem>
@@ -37,77 +47,95 @@
 </template>
 
 <script>
-    import {apiGetTourDetail} from "@/api/api";
-    import TestPic from "./testPic";
-    import {apiUpdateTour} from "../../api/api";
+  import {apiGetTourDetail} from "@/api/api";
+  import TestPic from "./testPic";
+  import {apiUpdateTour} from "../../api/api";
+  import {quillEditor} from 'vue-quill-editor'
+  import 'quill/dist/quill.core.css'
+  import 'quill/dist/quill.bubble.css'
+  import 'quill/dist/quill.snow.css'
+  import {imageResize} from 'quill-image-resize-module'
 
-    export default {
-        name: "tourDetail",
-        components: {
-            TestPic
-        },
-        data() {
-            return {
-                tour: {}
-            }
-        },
-        methods: {
-            loadAllData() {
-                apiGetTourDetail({
-                    tourId: this.$route.params.tourId
-                }).then((response) => {
-                    console.log(response)
-                    if (response.data.code === 0) {
-                        this.tour = response.data.data.tour
-                    } else {
-                        throw new Error('读取数据失败')
-                    }
-                }).catch((error) => {
-                    this.$Message.error(error)
-                })
-            },
-            saveTour() {
-                let params = {
-                    tourId: this.tour.tourId,
-                    type: this.tour.type,
-                    title: this.tour.title,
-                    detail: this.tour.detail,
-                    brief: this.tour.brief,
-                    price: this.tour.price,
-                    specialPrice: this.tour.specialPrice,
-                    location: this.tour.location,
-                    logoFile: this.tour.logoFile,
-                    logoFileLogId: this.tour.logoFileLogId,
-                    theme: this.tour.theme
-                }
-
-                apiUpdateTour(params).then((response) => {
-                    if (response.data.code === 0) {
-                        this.$Message.success('保存成功')
-                    } else {
-                        throw new Error('保存失败')
-                    }
-                }).catch((error) => {
-                    this.$Message.error(error)
-                })
-
-            },
-            change(data) {
-                if (data.action === 'edit') {
-                    this.tour.logoFile = data.fileName
-                    this.tour.logoFileLogId = data.fileLogId
-                } else {
-                    if (data.action === 'delete') {
-                        this.tour.logoFile = null
-                        this.tour.logoFileLogId = null
-                    }
-                }
-            }
-        },
-        mounted() {
-            this.loadAllData()
+  export default {
+    name: "tourDetail",
+    components: {
+      TestPic,
+      quillEditor
+    },
+    data() {
+      return {
+        tour: {},
+        editorOption: {
+          modules: {
+            // toolbar: [
+              // ['bold', 'italic', 'underline', 'strike'],
+              // ['image', 'video']
+            // ],
+            imageResize: true
+          }
         }
+      }
+    },
+    methods: {
+      loadAllData() {
+        apiGetTourDetail({
+          tourId: this.$route.params.tourId
+        }).then((response) => {
+          console.log(response)
+          if (response.data.code === 0) {
+            this.tour = response.data.data.tour
+          } else {
+            throw new Error('读取数据失败')
+          }
+        }).catch((error) => {
+          this.$Message.error(error)
+        })
+      },
+      saveTour() {
+        let params = {
+          tourId: this.tour.tourId,
+          type: this.tour.type,
+          title: this.tour.title,
+          detail: this.tour.detail,
+          brief: this.tour.brief,
+          price: this.tour.price,
+          specialPrice: this.tour.specialPrice,
+          location: this.tour.location,
+          logoFile: this.tour.logoFile,
+          logoFileLogId: this.tour.logoFileLogId,
+          theme: this.tour.theme
+        }
+
+        apiUpdateTour(params).then((response) => {
+          if (response.data.code === 0) {
+            this.$Message.success('保存成功')
+          } else {
+            throw new Error('保存失败')
+          }
+        }).catch((error) => {
+          this.$Message.error(error)
+        })
+
+      },
+      change(data) {
+        if (data.action === 'edit') {
+          this.tour.logoFile = data.fileName
+          this.tour.logoFileLogId = data.fileLogId
+        } else {
+          if (data.action === 'delete') {
+            this.tour.logoFile = null
+            this.tour.logoFileLogId = null
+          }
+        }
+      },
+      onEditorChange() {
+
+      }
+    },
+    mounted() {
+      this.loadAllData()
     }
+  }
 </script>
 
 <style scoped>
