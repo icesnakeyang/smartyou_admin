@@ -31,6 +31,7 @@
           <quill-editor v-model="tour.detail"
                         :options="editorOption"
                         @change="onEditorChange"
+                        style="width:340px"
           ></quill-editor>
         </div>
       </FormItem>
