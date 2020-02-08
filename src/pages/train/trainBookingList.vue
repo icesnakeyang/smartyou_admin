@@ -23,7 +23,7 @@
       </template>
     </Table>
     <template>
-      <Page :total="totalOrders" :page-size="pageSize" @on-change="onPage"/>
+      <Page style="margin-top: 20px;" :total="totalOrders" :page-size="pageSize" @on-change="onPage"/>
     </template>
   </div>
 </template>
