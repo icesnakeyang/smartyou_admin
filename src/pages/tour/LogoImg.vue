@@ -39,7 +39,7 @@
 
 <script>
     export default {
-        name: "testPic",
+        name: "LogoImg",
         data() {
             return {
                 defaultList: [],

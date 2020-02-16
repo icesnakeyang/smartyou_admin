@@ -115,11 +115,6 @@
                         name:'trainOrderMaintain'
                     })
                 }
-                if(name==='menuTestPic'){
-                    this.$router.push({
-                        name:'testPic'
-                    })
-                }
                 if(name==='menuRentVehicleOrder'){
                     this.$router.push(({
                         name:'rentVehicleOrderList'
