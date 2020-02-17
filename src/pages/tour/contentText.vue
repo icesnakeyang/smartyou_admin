@@ -61,6 +61,7 @@
         }
       },
       theContent() {
+        console.log(this.content)
         this.content2 = this.content
       }
     },

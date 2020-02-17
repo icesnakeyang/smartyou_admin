@@ -35,7 +35,7 @@
                 <img :src="item.fileName" width="100%">
               </div>
               <div v-else="item.filename">
-                <div v-html="item">
+                <div v-html="item.contentText">
                 </div>
               </div>
             </Col>
@@ -62,12 +62,12 @@
     </Form>
 
     <content-text :modalStatus="modalStatusNewText"
-                  :content="tourContent"
+                  :content="tourContent.contentText"
                   @newContent="newContent"
                   @updateModalStatus="updateModalStatus"></content-text>
 
     <content-text :modalStatus="modalStatusEditText"
-                  :content="tourContent"
+                  :content="tourContent.contentText"
                   @editContent="editContent"
                   @updateModalStatus="updateModalStatus"></content-text>
 
@@ -166,21 +166,27 @@
       },
       newContent(content) {
         console.log('parent new')
-        this.tourContent = content
-        this.tourContentList.push(content)
+        this.tourContent = {
+          contentText: content
+        }
+        console.log(this.tourContent)
+        this.tourContentList.push(this.tourContent)
         console.log(this.tourContentList)
       },
       editContent(content) {
         console.log('parent edit')
-        this.tourContent = content
-        console.log(this.tourContent)
+        this.tourContent = {
+          contentText: content
+        }
         console.log(this.tourContentList)
         console.log(this.indexContent)
         this.tourContentList.splice(this.indexContent, 1, this.tourContent)
       },
       modalNewText() {
         this.modalStatusNewText = true
-        this.tourContent = ''
+        this.tourContent = {
+          contentText: ''
+        }
       },
       modalEditText(item, index) {
         console.log(item)

@@ -119,14 +119,6 @@ export const apiSyncTrainOrder = params => {
   })
 }
 
-export const apiGetTourDetail = params => {
-  return axios.post(`${host}/tour/getTourDetail`, params, {
-    headers: {
-      token: store.state.gogo_smartyou_token
-    }
-  })
-}
-
 export const apiListRentVehicle = params => {
   return axios.post(`${host}/admin/listRentVehicle`, params, {
     headers: {
@@ -249,6 +241,22 @@ export const apiActiveGuide = params => {
 
 export const apiDeleteGuide = params => {
   return axios.post(`${host}/admin/guide/deleteGuide`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
+export const apiListTour = params => {
+  return axios.post(`${host}/admin/tour/listTour`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
+export const apiGetTourDetail = params => {
+  return axios.post(`${host}/admin/tour/getTourDetail`, params, {
     headers: {
       token: store.state.gogo_smartyou_token
     }

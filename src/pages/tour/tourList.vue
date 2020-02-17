@@ -26,77 +26,80 @@
 </template>
 
 <script>
-    import {apiListSpecialPriceTour} from "../../api/api";
+  import {apiListSpecialPriceTour, apiListTour} from "../../api/api";
 
-    export default {
-        name: "tourList",
-        data() {
-            return {
-                tourList: [],
-                colListTour: [
-                    {
-                        title: '线路名称',
-                        slot: 'name'
-                    },
-                    {
-                        title: '简介',
-                        key: 'brief'
-                    },
-                    {
-                        title: '价格',
-                        key: 'price'
-                    },
-                    {
-                        title: '状态',
-                        key: 'status'
-                    },
-                    {
-                        title: '发布时间',
-                        key: 'publishTime'
-                    },
-                    {
-                        title: 'Action',
-                        slot: 'action',
-                        width: 150,
-                        align: 'center'
-                    }
-                ],
-
-            }
-        },
-        methods: {
-            loadAllData() {
-                apiListSpecialPriceTour({
-                    pageIndex: 1,
-                    pageSize: 5
-                }).then((response) => {
-                    if (response.data.code === 0) {
-                        this.tourList = response.data.data.specialTourList
-                    } else {
-                        throw new Error('读取数据错误')
-                    }
-                }).catch((error) => {
-                    this.$Message.error(error)
-                })
-            },
-            btDetail(row) {
-                this.$router.push({
-                    name: 'tourDetail',
-                    params: {
-                        tourId: row.tourId,
-                        logoFile: row.logoFile,
-                        logoFileLogId: row.logoFileLogId
-                    }
-                })
-            },
-            remove(index) {
-                this.data6.splice(index, 1);
-            }
-        },
-        mounted() {
-            this.loadAllData()
+  export default {
+    name: "tourList",
+    data() {
+      return {
+        tourList: [],
+        colListTour: [
+          {
+            title: '线路名称',
+            slot: 'name'
+          },
+          {
+            title: '简介',
+            key: 'brief'
+          },
+          {
+            title: '价格',
+            key: 'price'
+          },
+          {
+            title: '状态',
+            key: 'status'
+          },
+          {
+            title: '发布时间',
+            key: 'publishTime'
+          },
+          {
+            title: 'Action',
+            slot: 'action',
+            width: 150,
+            align: 'center'
+          }
+        ],
+        pageIndex: 1,
+        pageSize: 20,
+        totalTour: 0
+      }
+    },
+    methods: {
+      loadAllData() {
+        let params = {
+          pageIndex: this.pageIndex,
+          pageSize: this.pageSize
         }
+        apiListTour(params).then((response) => {
+          console.log(response)
+          if (response.data.code === 0) {
+            this.tourList = response.data.data.tours
+          } else {
+            throw new Error('读取数据错误')
+          }
+        }).catch((error) => {
+          this.$Message.error(error)
+        })
+      },
+      btDetail(row) {
+        console.log(row)
+        this.$router.push({
+          name: 'tourDetail',
+          params: {
+            tourId: row.tourId
+          }
+        })
+      },
+      remove(index) {
+        this.data6.splice(index, 1);
+      }
+    },
+    mounted() {
+      this.loadAllData()
     }
+  }
 </script>
 
 <style scoped>
