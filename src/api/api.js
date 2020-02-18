@@ -263,4 +263,20 @@ export const apiGetTourDetail = params => {
   })
 }
 
+export const apiAgreeTour = params => {
+  return axios.post(`${host}/admin/tour/agreeTour`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
+export const apiRejectTour = params => {
+  return axios.post(`${host}/admin/tour/rejectTour`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
 
