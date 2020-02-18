@@ -73,7 +73,6 @@
           pageSize: this.pageSize
         }
         apiListTour(params).then((response) => {
-          console.log(response)
           if (response.data.code === 0) {
             this.tourList = response.data.data.tours
           } else {
@@ -84,7 +83,6 @@
         })
       },
       btDetail(row) {
-        console.log(row)
         this.$router.push({
           name: 'tourDetail',
           params: {

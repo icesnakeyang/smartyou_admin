@@ -44,7 +44,6 @@
       handleView(name) {
         this.imgName = name;
         this.visible = true;
-        console.log(this.imgName)
       },
       handleRemove(file) {
         this.defaultList.splice(this.defaultList.findIndex(item => item.name === file.name), 1)
@@ -55,7 +54,6 @@
         this.uploadList = this.defaultList
       },
       handleSuccess(res) {
-        console.log(res)
         let fileName = res.data.filename
         let fielLogId = res.data.fileLogId
         this.imgName = fileName
@@ -102,7 +100,6 @@
       this.uploadList = this.$refs.upload.fileList;
     },
     created() {
-      console.log(this.$route.params)
       if (this.$route.params.logoFile) {
         this.defaultList = [
           {

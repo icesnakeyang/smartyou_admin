@@ -36,7 +36,6 @@
     },
     computed: {
       theStatus() {
-        console.log(this.modalStatus)
         if (this.modalStatus) {
           this.theStatus2 = true
         } else {

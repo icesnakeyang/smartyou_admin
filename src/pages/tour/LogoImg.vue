@@ -1,15 +1,12 @@
 <template>
   <div>
-    <div class="demo-upload-list" v-for="item in uploadList">
-      <template v-if="item.status === 'finished'">
-        <img :src="item.url">
+    <div v-if="logoImgUrl" class="demo-upload-list">
+      <template v-if="logoImgStatus === 'finished'">
+        <img :src="logoImgUrl">
         <div class="demo-upload-list-cover">
-          <Icon type="ios-eye-outline" @click.native="handleView(item.url)"></Icon>
-          <Icon type="ios-trash-outline" @click.native="handleRemove(item)"></Icon>
+          <Icon type="ios-eye-outline" @click.native="handleView(logoImgUrl)"></Icon>
+          <Icon type="ios-trash-outline" @click.native="handleRemove()"></Icon>
         </div>
-      </template>
-      <template v-else>
-        <Progress v-if="item.showProgress" :percent="item.percentage" hide-info></Progress>
       </template>
     </div>
     <Upload
@@ -38,96 +35,82 @@
 </template>
 
 <script>
-    export default {
-        name: "LogoImg",
-        data() {
-            return {
-                defaultList: [],
-                imgName: '',
-                visible: false,
-                uploadList: [],
-                tour: {}
-            }
-        },
-        computed: {
-            token() {
-                return this.$store.state.gogo_smartyou_token
-            }
-        },
-        methods: {
-            handleView(name) {
-                this.imgName = name;
-                this.visible = true;
-                console.log(this.imgName)
-            },
-            handleRemove(file) {
-                this.defaultList.splice(this.defaultList.findIndex(item => item.name === file.name), 1)
-                let params = {
-                    action: 'delete'
-                }
-                this.$emit('event1', params)
-                this.uploadList = this.defaultList
-            },
-            handleSuccess(res) {
-                console.log(res)
-                let fileName = res.data.filename
-                let fielLogId = res.data.fileLogId
-                this.imgName=fileName
-
-                let item = {}
-                if (this.uploadList.length === 0) {
-                } else {
-                    item = this.uploadList.pop()
-                }
-
-                item.url = fileName
-                item.name = fielLogId
-
-                this.uploadList=[]
-
-                this.uploadList.push(item)
-
-                this.defaultList = this.uploadList
-
-                let params = {
-                    fileName: fileName,
-                    fileLogId: fielLogId,
-                    action: 'edit'
-                }
-                this.$emit('event1', params)
-            },
-            handleFormatError(file) {
-                this.$Notice.warning({
-                    title: 'The file format is incorrect',
-                    desc: 'File format of ' + file.name + ' is incorrect, please select jpg or png.'
-                });
-            },
-            handleMaxSize(file) {
-                this.$Notice.warning({
-                    title: 'Exceeding file size limit',
-                    desc: 'File  ' + file.name + ' is too large, no more than 2M.'
-                });
-            },
-            handleBeforeUpload() {
-
-            }
-        },
-        mounted() {
-            this.uploadList = this.$refs.upload.fileList;
-        },
-        created() {
-            console.log(this.$route.params)
-            if (this.$route.params.logoFile) {
-                this.defaultList = [
-                    {
-                        url: this.$route.params.logoFile,
-                        name: this.$route.params.logoFileLogId
-                    }
-                ]
-            }else{
-            }
+  export default {
+    name: "LogoImg",
+    data() {
+      return {
+        defaultList: [],
+        imgName: '',
+        visible: false,
+        uploadList: [],
+        tour: {},
+        logoImgUrl: '',
+        logoImgId: '',
+        logoImgStatus: 'finished'
+      }
+    },
+    props: {
+      logoUrlProp: ''
+    },
+    computed: {
+      token() {
+        this.logoImgUrl = this.logoUrlProp
+        return this.$store.state.gogo_smartyou_token
+      }
+    },
+    methods: {
+      handleView(name) {
+        this.imgName = name;
+        this.visible = true;
+      },
+      handleRemove() {
+        let params = {
+          action: 'delete'
         }
+        this.$emit('event1', params)
+      },
+      handleSuccess(res) {
+        let fileName = res.data.filename
+        let fielLogId = res.data.fileLogId
+        this.imgName = fileName
+
+        let params = {
+          fileName: fileName,
+          fileLogId: fielLogId,
+          action: 'edit'
+        }
+        this.$emit('event1', params)
+      },
+      handleFormatError(file) {
+        this.$Notice.warning({
+          title: 'The file format is incorrect',
+          desc: 'File format of ' + file.name + ' is incorrect, please select jpg or png.'
+        });
+      },
+      handleMaxSize(file) {
+        this.$Notice.warning({
+          title: 'Exceeding file size limit',
+          desc: 'File  ' + file.name + ' is too large, no more than 2M.'
+        });
+      },
+      handleBeforeUpload() {
+      }
+    },
+    mounted() {
+      this.uploadList = this.$refs.upload.fileList;
+    },
+    created() {
+      if (this.$route.params.logoFile) {
+        this.defaultList = [
+          {
+            url: this.$route.params.logoFile,
+            name: this.$route.params.logoFileLogId
+          }
+        ]
+      } else {
+      }
     }
+  }
 </script>
 
 <style scoped>
