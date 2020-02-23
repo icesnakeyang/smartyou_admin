@@ -24,8 +24,10 @@ import rentVehicleOrderList from "../pages/rentVehicle/rentVehicleOrderList";
 import rentVehicleOrderDetail from "../pages/rentVehicle/rentVehicleOrderDetail";
 import tourOrderList from "../pages/tour/tourOrder/tourOrderList";
 import tourOrderDetail from "../pages/tour/tourOrder/tourOrderDetail";
-import guideList from "../pages/guide/guideList";
 import guideInfoDetail from "../pages/guide/guideInfoDetail";
+import guideLogDetail from "@/pages/guide/guideLogDetail";
+import guideInfoList from "@/pages/guide/guideInfoList";
+import guideLogList from "@/pages/guide/guideLogList";
 
 Vue.use(Router)
 
@@ -214,12 +216,12 @@ const router = new Router({
           }
         },
         {
-          path:'guideList',
-          name:'guideList',
+          path:'guideInfoList',
+          name:'guideInfoList',
           components:{
             header:baseHeader,
             sider:adminSider,
-            content:guideList,
+            content:guideInfoList,
             footer:baseFooter
           }
         },
@@ -230,6 +232,26 @@ const router = new Router({
             header:baseHeader,
             sider:adminSider,
             content:guideInfoDetail,
+            footer:baseFooter
+          }
+        },
+        {
+          path:'guideLogList',
+          name:'guideLogList',
+          components:{
+            header:baseHeader,
+            sider:adminSider,
+            content:guideLogList,
+            footer:baseFooter
+          }
+        },
+        {
+          path:'guideLogDetail',
+          name:'guideLogDetail',
+          components:{
+            header:baseHeader,
+            sider:adminSider,
+            content:guideLogDetail,
             footer:baseFooter
           }
         }

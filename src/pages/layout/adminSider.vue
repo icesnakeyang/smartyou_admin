@@ -45,7 +45,8 @@
         <Icon type="ios-analytics"></Icon>
         导游管理
       </template>
-      <MenuItem name="menuGuideList">导游列表</MenuItem>
+      <MenuItem name="menuGuideInfoList">导游列表</MenuItem>
+      <MenuItem name="menuGuideLogList">导游日志列表</MenuItem>
       <MenuItem name="7-2">Option 2</MenuItem>
     </Submenu>
     <Submenu name="8">

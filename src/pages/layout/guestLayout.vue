@@ -37,102 +37,107 @@
 </template>
 
 <script>
-    export default {
-        name: "guestLayout",
-        computed: {
-            isLogin() {
-                if (this.$store.state.gogo_smartyou_token) {
-                    return true
-                }
-                return false
-            }
-        },
-        methods: {
-            onMenuSelect(name) {
-                if (name === 'menuLogin') {
-                    this.$router.push({
-                        name: 'login'
-                    })
-                }
-                if (name === 'menuRegister') {
-                    this.$router.push({
-                        name: 'register'
-                    })
-                }
-                if (name === 'menuSignOut') {
-                    this.$store.dispatch('signOut')
-                    this.$router.push({
-                        path: '/'
-                    })
-                }
-                if (name === 'menuDashboard') {
-                    this.$router.push({
-                        name: 'dashboard'
-                    })
-                }
-                if (name === 'menuTrainOrder') {
-                    this.$router.push({
-                        name: 'trainBookingList'
-                    })
-                }
-                if (name === 'menuTrainSettings') {
-                    this.$router.push({
-                        name: 'trainSettings'
-                    })
-                }
-                if (name === 'menuUserList') {
-                    this.$router.push({
-                        name: 'userList'
-                    })
-                }
-                if (name === 'menuTourDashboard') {
-                    this.$router.push({
-                        name: 'TourDashboard'
-                    })
-                }
-                if (name === 'menuTourList') {
-                    this.$router.push({
-                        name: 'tourList'
-                    })
-                }
-                if (name === 'menuNewTour') {
-                    this.$router.push({
-                        name: 'newTour'
-                    })
-                }
-                if(name==='menuListMemberType'){
-                    this.$router.push({
-                        name:'memberTypeList'
-                    })
-                }
-                if(name==='menuCreateMemberType'){
-                    this.$router.push({
-                        name:'createMemberType'
-                    })
-                }
-                if(name==='menuMaintainTrainOrder'){
-                    this.$router.push({
-                        name:'trainOrderMaintain'
-                    })
-                }
-                if(name==='menuRentVehicleOrder'){
-                    this.$router.push(({
-                        name:'rentVehicleOrderList'
-                    }))
-                }
-                if(name==='menuTourOrderList'){
-                    this.$router.push({
-                        name:'tourOrderList'
-                    })
-                }
-                if(name==='menuGuideList'){
-                    this.$router.push({
-                        name:'guideList'
-                    })
-                }
-            }
+  export default {
+    name: "guestLayout",
+    computed: {
+      isLogin() {
+        if (this.$store.state.gogo_smartyou_token) {
+          return true
         }
+        return false
+      }
+    },
+    methods: {
+      onMenuSelect(name) {
+        if (name === 'menuLogin') {
+          this.$router.push({
+            name: 'login'
+          })
+        }
+        if (name === 'menuRegister') {
+          this.$router.push({
+            name: 'register'
+          })
+        }
+        if (name === 'menuSignOut') {
+          this.$store.dispatch('signOut')
+          this.$router.push({
+            path: '/'
+          })
+        }
+        if (name === 'menuDashboard') {
+          this.$router.push({
+            name: 'dashboard'
+          })
+        }
+        if (name === 'menuTrainOrder') {
+          this.$router.push({
+            name: 'trainBookingList'
+          })
+        }
+        if (name === 'menuTrainSettings') {
+          this.$router.push({
+            name: 'trainSettings'
+          })
+        }
+        if (name === 'menuUserList') {
+          this.$router.push({
+            name: 'userList'
+          })
+        }
+        if (name === 'menuTourDashboard') {
+          this.$router.push({
+            name: 'TourDashboard'
+          })
+        }
+        if (name === 'menuTourList') {
+          this.$router.push({
+            name: 'tourList'
+          })
+        }
+        if (name === 'menuNewTour') {
+          this.$router.push({
+            name: 'newTour'
+          })
+        }
+        if (name === 'menuListMemberType') {
+          this.$router.push({
+            name: 'memberTypeList'
+          })
+        }
+        if (name === 'menuCreateMemberType') {
+          this.$router.push({
+            name: 'createMemberType'
+          })
+        }
+        if (name === 'menuMaintainTrainOrder') {
+          this.$router.push({
+            name: 'trainOrderMaintain'
+          })
+        }
+        if (name === 'menuRentVehicleOrder') {
+          this.$router.push(({
+            name: 'rentVehicleOrderList'
+          }))
+        }
+        if (name === 'menuTourOrderList') {
+          this.$router.push({
+            name: 'tourOrderList'
+          })
+        }
+        if (name === 'menuGuideInfoList') {
+          this.$router.push({
+            name: 'guideInfoList'
+          })
+        }
+        if (name === 'menuGuideLogList') {
+          this.$router.push({
+            name: 'guideLogList'
+          })
+        }
+      }
     }
+  }
 </script>
 
 <style scoped>
