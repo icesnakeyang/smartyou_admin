@@ -25,90 +25,146 @@
     </div>
     <div v-if="isPending">
       <Card style="margin-top: 20px">
-        <Button type="primary">通过</Button>
-        <Button type="error">拒绝</Button>
+        <Button type="primary" @click="btAgree">通过</Button>
+        <Button type="error" @click="btReject">拒绝</Button>
       </Card>
     </div>
     <UserActLogListComp :userId="guideLog.userId"/>
+    <ProcessLogComp :modalStatus="modalStatus" :modalType="modalType" @modalOutHandle="modalOutHandle"></ProcessLogComp>
   </div>
 </template>
 
 <script>
-  import moment from "moment";
-  import {apiGetGuideLog} from "@/api/api";
-  import UserActLogListComp from '../user/actLog/actlogListComp'
+    import moment from "moment";
+    import {apiGetGuideLog} from "@/api/api";
+    import UserActLogListComp from '../user/actLog/actlogListComp'
+    import ProcessLogComp from '../common/components/processLogComponent'
+    import {apiAgreeGuide, apiRejectGuide} from "../../api/api";
 
-  export default {
-    name: "guideLogDetail",
-    components: {
-      UserActLogListComp
-    },
-    data() {
-      return {
-        guideLog: {
-          guideData: {}
+    export default {
+        name: "guideLogDetail",
+        components: {
+            UserActLogListComp,
+            ProcessLogComp
+        },
+        data() {
+            return {
+                guideLog: {
+                    guideData: {}
+                },
+                modalType: '',
+                modalStatus: false
+            }
+        },
+        computed: {
+            createTime() {
+                if (this.guideLog.createTime) {
+                    return moment(this.guideLog.createTime).format('YYYY-MM-DD HH:mm')
+                }
+                return ''
+            },
+            status() {
+                if (this.guideLog.status === 'PRIVATE') {
+                    return '未提交'
+                }
+            },
+            isPrivate() {
+                if (this.guideLog.status === 'PRIVATE') {
+                    return true
+                }
+                return false
+            },
+            isPending() {
+                if (this.guideLog.status === 'PENDING') {
+                    return true
+                }
+                return false
+            },
+            sex() {
+                if (this.guideLog.guideData.sex === 'F') {
+                    return '女'
+                } else {
+                    if (this.guideLog.guideData.sex === 'M') {
+                        return '男'
+                    }
+                }
+            },
+            brithDate() {
+                if (this.guideLog.guideData.birthDate) {
+                    return moment(this.guideLog.guideData.birthDate).format('YYYY-MM-DD')
+                }
+            }
+        },
+        methods: {
+            loadAllData() {
+                let params = {
+                    guideLogId: this.$route.params.guideLogId
+                }
+                console.log(params)
+                apiGetGuideLog(params).then((response) => {
+                    console.log(response)
+                    if (response.data.code === 0) {
+                        this.guideLog = response.data.data.guideLog
+                    }
+                }).catch((error) => {
+                    this.$Message.error(error)
+                })
+            },
+            btAgree() {
+                this.modalType = 'AGREE'
+                this.modalStatus = true
+            },
+
+            btReject() {
+                this.modalType = 'REJECT'
+                this.modalStatus = true
+            },
+            modalOutHandle(data) {
+                console.log(data)
+                this.modalStatus = data.status
+                if(data.event==='ok' && data.result==='AGREE'){
+                    //审核通过
+                    let params = {
+                        guideId: this.guideLog.guideLogId,
+                        processRemark: data.processRemark
+                    }
+
+                    apiAgreeGuide(params).then((response) => {
+                        console.log(response)
+                        if (response.data.code === 0) {
+                            this.$Message.success('已通过导游审核')
+                            this.loadAllData()
+                        } else {
+                            throw new Error('处理失败')
+                        }
+                    }).catch((error) => {
+                        this.$Message.error(error)
+                    })
+                }else{
+                    if(data.event==='ok' && data.result==='REJECT'){
+                        //审核拒绝
+                        let params = {
+                            guideLogId: this.guideLog.guideLogId,
+                            processRemark: data.processRemark
+                        }
+                        apiRejectGuide(params).then((response) => {
+                            if (response.data.code === 0) {
+                                this.$Message.success('已拒绝该导游申请')
+                                this.loadAllData()
+                            } else {
+                                throw new Error('处理失败')
+                            }
+                        }).catch((error) => {
+                            this.$Message.error(error)
+                        })
+                    }
+                }
+            }
+        },
+        mounted() {
+            this.loadAllData()
         }
-      }
-    },
-    computed: {
-      createTime() {
-        if (this.guideLog.createTime) {
-          return moment(this.guideLog.createTime).format('YYYY-MM-DD HH:mm')
-        }
-        return ''
-      },
-      status() {
-        if (this.guideLog.status === 'PRIVATE') {
-          return '未提交'
-        }
-      },
-      isPrivate() {
-        if (this.guideLog.status === 'PRIVATE') {
-          return true
-        }
-        return false
-      },
-      isPending() {
-        if (this.guideLog.status === 'PENDING') {
-          return true
-        }
-        return false
-      },
-      sex() {
-        if (this.guideLog.guideData.sex === 'F') {
-          return '女'
-        } else {
-          if (this.guideLog.guideData.sex === 'M') {
-            return '男'
-          }
-        }
-      },
-      brithDate() {
-        if (this.guideLog.guideData.birthDate) {
-          return moment(this.guideLog.guideData.birthDate).format('YYYY-MM-DD')
-        }
-      }
-    },
-    methods: {
-      loadAllData() {
-        let params = {
-          guideLogId: this.$route.params.guideLogId
-        }
-        console.log(params)
-        apiGetGuideLog(params).then((response) => {
-          console.log(response)
-          if (response.data.code === 0) {
-            this.guideLog = response.data.data.guideLog
-          }
-        }).catch((error) => {
-          this.$Message.error(error)
-        })
-      }
-    },
-    mounted() {
-      this.loadAllData()
     }
-  }
 </script>
 
 <style scoped>
