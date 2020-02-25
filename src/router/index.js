@@ -27,7 +27,8 @@ import tourOrderDetail from "../pages/tour/tourOrder/tourOrderDetail";
 import guideInfoDetail from "../pages/guide/guideInfoDetail";
 import guideLogDetail from "@/pages/guide/guideLogDetail";
 import guideInfoList from "@/pages/guide/guideInfoList";
-import guideLogList from "@/pages/guide/guideLogList";
+import guideLogListApply from "@/pages/guide/guideLogListApply";
+import guideLogListPotential from "@/pages/guide/guideLogListPotential";
 
 Vue.use(Router)
 
@@ -236,12 +237,22 @@ const router = new Router({
           }
         },
         {
-          path:'guideLogList',
-          name:'guideLogList',
+          path:'guideLogListApply',
+          name:'guideLogListApply',
           components:{
             header:baseHeader,
             sider:adminSider,
-            content:guideLogList,
+            content:guideLogListApply,
+            footer:baseFooter
+          }
+        },
+        {
+          path:'guideLogListPotential',
+          name:'guideLogListPotential',
+          components:{
+            header:baseHeader,
+            sider:adminSider,
+            content:guideLogListPotential,
             footer:baseFooter
           }
         },

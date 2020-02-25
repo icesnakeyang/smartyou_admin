@@ -279,8 +279,24 @@ export const apiRejectTour = params => {
   })
 }
 
+export const apiListGuidePotential = params => {
+  return axios.post(`${host}/admin/guide/listGuidePotential`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
 export const apiGetGuideLog = params => {
   return axios.post(`${host}/admin/guide/getGuideLog`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
+export const apiListUserActLog = params => {
+  return axios.post(`${host}/admin/user/listUserActLog`, params, {
     headers: {
       token: store.state.gogo_smartyou_token
     }

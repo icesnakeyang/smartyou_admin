@@ -22,7 +22,7 @@
   import {apiListGuideApply} from "@/api/api";
 
   export default {
-    name: "guideLogList",
+    name: "guideLogListApply",
     components: {
       GuideListRow
     },
@@ -31,10 +31,9 @@
         col1: [
           {
             title: '注册时间',
-            key: 'createTime',
             render: (h, params) => {
               return h('div', [
-                h('span', moment(params.row.createTime).format('YYYY-MM-DD HH:mm'))
+                h('span', moment(params.row.create_time).format('YYYY-MM-DD HH:mm'))
               ])
             }
           },
@@ -121,6 +120,9 @@
         })
       },
       showStatus(status) {
+        if(status==='PRIVATE'){
+          return '未提交'
+        }
         if (status === 'PENDING') {
           return '等待审核'
         }

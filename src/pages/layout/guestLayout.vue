@@ -130,9 +130,13 @@
             name: 'guideInfoList'
           })
         }
-        if (name === 'menuGuideLogList') {
+        if (name === 'menuGuideLogListApply') {
           this.$router.push({
-            name: 'guideLogList'
+            name: 'guideLogListApply'
+          })
+        }if (name === 'menuGuideLogListPotential') {
+          this.$router.push({
+            name: 'guideLogListPotential'
           })
         }
       }
