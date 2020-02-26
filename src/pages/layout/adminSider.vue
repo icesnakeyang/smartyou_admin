@@ -48,7 +48,7 @@
       <MenuItem name="menuGuideInfoList">导游列表</MenuItem>
       <MenuItem name="menuGuideLogListApply">新申请导游</MenuItem>
       <MenuItem name="menuGuideLogListPotential">潜在申请导游</MenuItem>
-      <MenuItem name="7-2">Option 2</MenuItem>
+      <MenuItem name="menuGuideResignLogList">导游注销申请</MenuItem>
     </Submenu>
     <Submenu name="8">
       <template slot="title">

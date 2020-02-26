@@ -1,35 +1,28 @@
 <template>
   <div>
     <Card>
-      <Table :columns="col1" :data="guideInfoList">
-
-      </Table>
-      <Page :total="totalGuideInfo"></Page>
+      <Table :columns="col1" :data="resignLogs"></Table>
+      <Page :total="totalResignLog"></Page>
     </Card>
   </div>
 </template>
 
 <script>
-    import {apiListGuideInfo} from "../../api/api";
+    import {apiListResignLog} from "../../api/api";
     import moment from "moment";
-    import rentVehicleOrderDetail from "../rentVehicle/rentVehicleOrderDetail";
 
     export default {
-        name: "guideInfoList",
+        name: "resignGuideLogList",
         data() {
             return {
                 pageIndex: 1,
                 pageSize: 10,
-                totalGuideInfo: 0,
-                guideInfoList: [],
+                totalResignLog: 0,
+                resignLogs: [],
                 col1: [
                     {
                         title: '姓名',
                         key: 'name'
-                    },
-                    {
-                        title: '城市',
-                        key: 'location'
                     },
                     {
                         title: '性别',
@@ -42,15 +35,13 @@
                         key: 'age'
                     },
                     {
-                        title: '电话',
-                        key: 'phone'
+                        title: '城市',
+                        key: 'location'
                     },
                     {
-                        title: '注册时间',
+                        title: '申请时间',
                         render: (h, params) => {
-                            return h('div', [
-                                h('span', moment(params.row.register_time).format('YYYY-MM-DD HH:mm'))
-                            ])
+                            return h('div', moment(params.row.create_time).format('YYYY-MM-DD HH:mm'))
                         }
                     },
                     {
@@ -89,31 +80,38 @@
                     pageIndex: this.pageIndex,
                     pageSize: this.pageSize
                 }
-                apiListGuideInfo(params).then((response) => {
+                apiListResignLog(params).then((response) => {
+                    console.log(response)
                     if (response.data.code === 0) {
-                        this.guideInfoList = response.data.data.guideInfos
-                        this.totalGuideInfo = response.data.data.totalGuideInfo
+                        this.resignLogs = response.data.data.resignLogs
+                        this.totalResignLog = response.data.data.totalResignLogs
+                    } else {
+                        this.$Message.error(response.data.code)
                     }
+                }).catch((error) => {
+                    this.$Message.error(error)
                 })
             },
             showSex(sex) {
                 if (sex === 'F') {
                     return '女'
-                }
-                if (sex === 'M') {
-                    return '男'
+                } else {
+                    if (sex === 'M') {
+                        return '男'
+                    }
                 }
             },
             showStatus(status) {
-                if (status === 'ACTIVE') {
-                    return '正常'
+                if (status === 'PENDING') {
+                    return '等待审核'
                 }
             },
             btDetail(row) {
+                console.log(row)
                 this.$router.push({
-                    name: 'guideInfoDetail',
+                    name: 'resignLogDetail',
                     params: {
-                        guideInfoId: row.guide_id
+                        guideLogId: row.guide_log_id
                     }
                 })
             }

@@ -29,6 +29,8 @@ import guideLogDetail from "@/pages/guide/guideLogDetail";
 import guideInfoList from "@/pages/guide/guideInfoList";
 import guideLogListApply from "@/pages/guide/guideLogListApply";
 import guideLogListPotential from "@/pages/guide/guideLogListPotential";
+import resignGuideLogList from "../pages/guide/resignGuideLogList";
+import resignLogDetail from "../pages/guide/resignLogDetail";
 
 Vue.use(Router)
 
@@ -263,6 +265,26 @@ const router = new Router({
             header:baseHeader,
             sider:adminSider,
             content:guideLogDetail,
+            footer:baseFooter
+          }
+        },
+        {
+          path:'resignGuideLogList',
+          name:'resignGuideLogList',
+          components:{
+            header:baseHeader,
+            sider:adminSider,
+            content:resignGuideLogList,
+            footer:baseFooter
+          }
+        },
+        {
+          path:'resignLogDetail',
+          name:'resignLogDetail',
+          components:{
+            header:baseHeader,
+            sider:adminSider,
+            content:resignLogDetail,
             footer:baseFooter
           }
         }

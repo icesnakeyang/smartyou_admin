@@ -303,4 +303,20 @@ export const apiListUserActLog = params => {
   })
 }
 
+export const apiListGuideInfo = params => {
+  return axios.post(`${host}/admin/guide/listGuideInfo`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
+export const apiListResignLog = params => {
+  return axios.post(`${host}/admin/guide/listResignLog`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
 

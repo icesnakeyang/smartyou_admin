@@ -2,25 +2,8 @@
   <div>
     <Card>
       <p slot="title">导游详细信息</p>
-      <Row>
-        <Col :xs="2" :sm="4" :md="6" :lg="6">
-          <div class="demo-avatar">
-            <Avatar :src="guideInfo.avataUrl" style="width: 200px;height: 200px"/>
-          </div>
-        </Col>
-        <Col :xs="2" :sm="4" :md="6" :lg="18">
-          <p>姓名：{{guideInfo.name}}</p>
-          <p>注册时间：{{registerTime}}</p>
-          <p>身份证号码：{{guideInfo.idCard}}</p>
-          <p>出生日期：{{birthDay}}</p>
-          <p>性别：{{sex}}</p>
-          <p>年龄：{{guideInfo.age}}</p>
-          <p>电话：{{guideInfo.phone}}</p>
-        </Col>
-      </Row>
-      <div style="margin-top: 20px">
-        <p>导游服务地址：{{guideInfo.location}}</p>
-        <p>导游描述：{{guideInfo.description}}</p>
+
+        <Divider/>
         <p>当前状态：
           <span v-if="isBanned">
           <Tag color="error">{{status}}</Tag>
@@ -35,7 +18,6 @@
 
         <p>管理员处理时间：{{processTime}}</p>
         <p>管理员处理说明：{{guideInfo.processRemark}}</p>
-      </div>
     </Card>
 
     <div v-if="isPending">
@@ -134,21 +116,8 @@
     },
     computed: {
       registerTime() {
-        if (this.guideInfo.createTime) {
-          return moment(this.guideInfo.createTime).format('YYYY-MM-DD HH:mm')
-        }
-      },
-      sex() {
-        if (this.guideInfo.sex === 'M') {
-          return '男'
-        }
-        if (this.guideInfo.sex === 'F') {
-          return '女'
-        }
-      },
-      birthDay() {
-        if (this.guideInfo.birthDate) {
-          return moment(this.guideInfo.birthDate).format('YYYY-MM-DD')
+        if (this.guideInfo.register_time) {
+          return moment(this.guideInfo.register_time).format('YYYY-MM-DD HH:mm')
         }
       },
       status() {
@@ -195,9 +164,10 @@
     methods: {
       loadAllData() {
         let params = {
-          guideId: this.$route.params.guideId
+          guideId: this.$route.params.guideInfoId
         }
         apiGetGuide(params).then((response) => {
+            console.log(response)
           if (response.data.code === 0) {
             this.guideInfo = response.data.data.guideInfo
           } else {
