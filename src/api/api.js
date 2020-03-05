@@ -335,4 +335,28 @@ export const apiGetLineLog = params => {
   })
 }
 
+export const apiRejectLineLog = params => {
+  return axios.post(`${host}/admin/line/rejectLineLog`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
+export const apiAgreeLineLog = params => {
+  return axios.post(`${host}/admin/line/agreeLineLog`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
+export const apiListLine = params => {
+  return axios.post(`${host}/admin/line/listLine`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
 

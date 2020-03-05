@@ -5,10 +5,10 @@
         {{lineLog.title}}
       </p>
       <Row>
-        <Col :xs="12" :sm="6" :md="2" :lg="4">
+        <Col :xs="24" :sm="24" :md="12" :lg="8">
           <img style="width: 200px;height: 200px" :src="lineLog.logoImgUrl"/>
         </Col>
-        <Col :xs="12" :sm="18" :md="22" :lg="20">
+        <Col :xs="24" :sm="24" :md="12" :lg="16">
           <p>类型：{{lineLog.type}}</p>
 
           <p>主题：{{lineLog.theme}}</p>
@@ -63,6 +63,7 @@
 <script>
   import {apiGetLineLog} from "@/api/api";
   import moment from "moment";
+  import {apiAgreeLineLog, apiRejectGuide, apiRejectLineLog} from "../../../api/api";
 
   export default {
     name: "lineLogApplyDetail",
@@ -105,9 +106,34 @@
       },
       modalAgreeOk(){
         console.log('同意')
+          let params={
+              lineLogId:this.$route.params.lineLogId
+          }
+          apiAgreeLineLog(params).then((response)=>{
+              if(response.data.code===0){
+                  this.$Message.success('审核通过')
+              }else {
+                  this.$Message.error('审核失败:'+response.data.code)
+              }
+          }).catch((error)=>{
+              this.$Message.error(error)
+          })
       },
       modalRejectOk(){
         console.log('拒绝')
+          let params={
+              lineLogId:this.$route.params.lineLogId,
+              processRemark:this.processRemark
+          }
+          apiRejectLineLog(params).then((response)=>{
+              if(response.data.code===0){
+                  this.$Message.success('已拒绝该项审核')
+              }else {
+                  this.$Message.error('处理失败:'+response.data.code)
+              }
+          }).catch((error)=>{
+              this.$Message.error(error)
+          })
       }
     },
     mounted() {

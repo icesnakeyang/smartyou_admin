@@ -150,6 +150,11 @@
                         name:'lineLogApplyList'
                     })
                 }
+                if(name==='menuLineList'){
+                    this.$router.push({
+                        name:'lineList'
+                    })
+                }
             }
         }
     }

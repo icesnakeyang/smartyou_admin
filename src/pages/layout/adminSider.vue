@@ -34,6 +34,14 @@
         <Icon type="ios-analytics"></Icon>
         旅游线路
       </template>
+      <MenuItem name="menuLineDashboard">控制台</MenuItem>
+      <MenuItem name="menuLineList">旅游线路列表</MenuItem>
+    </Submenu>
+    <Submenu name="6">
+      <template slot="title">
+        <Icon type="ios-analytics"></Icon>
+        旅游线路
+      </template>
       <MenuItem name="menuTourDashboard">控制台</MenuItem>
       <MenuItem name="menuTourList">旅游线路列表</MenuItem>
       <MenuItem name="menuLineLogApply">导游申请的线路</MenuItem>
