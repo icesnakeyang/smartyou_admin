@@ -32,6 +32,7 @@ import guideLogListPotential from "@/pages/guide/guideLogListPotential";
 import resignGuideLogList from "../pages/guide/resignGuideLogList";
 import resignLogDetail from "../pages/guide/resignLogDetail";
 import lineLogApplyList from "../pages/lineLog/applyList/lineLogApplyList";
+import lineLogApplyDetail from "@/pages/lineLog/applyDetail/lineLogApplyDetail";
 
 Vue.use(Router)
 
@@ -150,153 +151,163 @@ const router = new Router({
           }
         },
         {
-          path:'trainOrderDetail',
-          name:'trainOrderDetail',
-          components:{
-            header:baseHeader,
-            sider:adminSider,
-            content:trainOrderDetail,
-            footer:baseFooter
+          path: 'trainOrderDetail',
+          name: 'trainOrderDetail',
+          components: {
+            header: baseHeader,
+            sider: adminSider,
+            content: trainOrderDetail,
+            footer: baseFooter
           }
         },
         {
-          path:'trainOrderMaintain',
-          name:'trainOrderMaintain',
-          components:{
-            header:baseHeader,
-            sider:adminSider,
-            content:trainOrderMaintain,
-            footer:baseFooter
+          path: 'trainOrderMaintain',
+          name: 'trainOrderMaintain',
+          components: {
+            header: baseHeader,
+            sider: adminSider,
+            content: trainOrderMaintain,
+            footer: baseFooter
           }
         },
         {
-          path:'tourDetail',
-          name:'tourDetail',
-          components:{
-            header:baseHeader,
-            sider:adminSider,
-            content:tourDetail,
-            footer:baseFooter
+          path: 'tourDetail',
+          name: 'tourDetail',
+          components: {
+            header: baseHeader,
+            sider: adminSider,
+            content: tourDetail,
+            footer: baseFooter
           }
         },
         {
-          path:'rentVehicleOrderList',
-          name:'rentVehicleOrderList',
-          components:{
-            header:baseHeader,
-            sider:adminSider,
-            content:rentVehicleOrderList,
-            footer:baseFooter
+          path: 'rentVehicleOrderList',
+          name: 'rentVehicleOrderList',
+          components: {
+            header: baseHeader,
+            sider: adminSider,
+            content: rentVehicleOrderList,
+            footer: baseFooter
           }
         },
         {
-          path:'rentVehicleOrderDetail',
-          name:'rentVehicleOrderDetail',
-          components:{
-            header:baseHeader,
-            sider:adminSider,
-            content:rentVehicleOrderDetail,
-            footer:baseFooter
+          path: 'rentVehicleOrderDetail',
+          name: 'rentVehicleOrderDetail',
+          components: {
+            header: baseHeader,
+            sider: adminSider,
+            content: rentVehicleOrderDetail,
+            footer: baseFooter
           }
         },
         {
-          path:'tourOrderList',
-          name:'tourOrderList',
-          components:{
-            header:baseHeader,
-            sider:adminSider,
-            content:tourOrderList,
-            footer:baseFooter
+          path: 'tourOrderList',
+          name: 'tourOrderList',
+          components: {
+            header: baseHeader,
+            sider: adminSider,
+            content: tourOrderList,
+            footer: baseFooter
           }
         },
         {
-          path:'tourOrderDetail',
-          name:'tourOrderDetail',
-          components:{
-            header:baseHeader,
-            sider:adminSider,
-            content:tourOrderDetail,
-            footer:baseFooter
+          path: 'tourOrderDetail',
+          name: 'tourOrderDetail',
+          components: {
+            header: baseHeader,
+            sider: adminSider,
+            content: tourOrderDetail,
+            footer: baseFooter
           }
         },
         {
-          path:'guideInfoList',
-          name:'guideInfoList',
-          components:{
-            header:baseHeader,
-            sider:adminSider,
-            content:guideInfoList,
-            footer:baseFooter
+          path: 'guideInfoList',
+          name: 'guideInfoList',
+          components: {
+            header: baseHeader,
+            sider: adminSider,
+            content: guideInfoList,
+            footer: baseFooter
           }
         },
         {
-          path:'guideInfoDetail',
-          name:'guideInfoDetail',
-          components:{
-            header:baseHeader,
-            sider:adminSider,
-            content:guideInfoDetail,
-            footer:baseFooter
+          path: 'guideInfoDetail',
+          name: 'guideInfoDetail',
+          components: {
+            header: baseHeader,
+            sider: adminSider,
+            content: guideInfoDetail,
+            footer: baseFooter
           }
         },
         {
-          path:'guideLogListApply',
-          name:'guideLogListApply',
-          components:{
-            header:baseHeader,
-            sider:adminSider,
-            content:guideLogListApply,
-            footer:baseFooter
+          path: 'guideLogListApply',
+          name: 'guideLogListApply',
+          components: {
+            header: baseHeader,
+            sider: adminSider,
+            content: guideLogListApply,
+            footer: baseFooter
           }
         },
         {
-          path:'guideLogListPotential',
-          name:'guideLogListPotential',
-          components:{
-            header:baseHeader,
-            sider:adminSider,
-            content:guideLogListPotential,
-            footer:baseFooter
+          path: 'guideLogListPotential',
+          name: 'guideLogListPotential',
+          components: {
+            header: baseHeader,
+            sider: adminSider,
+            content: guideLogListPotential,
+            footer: baseFooter
           }
         },
         {
-          path:'guideLogDetail',
-          name:'guideLogDetail',
-          components:{
-            header:baseHeader,
-            sider:adminSider,
-            content:guideLogDetail,
-            footer:baseFooter
+          path: 'guideLogDetail',
+          name: 'guideLogDetail',
+          components: {
+            header: baseHeader,
+            sider: adminSider,
+            content: guideLogDetail,
+            footer: baseFooter
           }
         },
         {
-          path:'resignGuideLogList',
-          name:'resignGuideLogList',
-          components:{
-            header:baseHeader,
-            sider:adminSider,
-            content:resignGuideLogList,
-            footer:baseFooter
+          path: 'resignGuideLogList',
+          name: 'resignGuideLogList',
+          components: {
+            header: baseHeader,
+            sider: adminSider,
+            content: resignGuideLogList,
+            footer: baseFooter
           }
         },
         {
-          path:'resignLogDetail',
-          name:'resignLogDetail',
-          components:{
-            header:baseHeader,
-            sider:adminSider,
-            content:resignLogDetail,
-            footer:baseFooter
+          path: 'resignLogDetail',
+          name: 'resignLogDetail',
+          components: {
+            header: baseHeader,
+            sider: adminSider,
+            content: resignLogDetail,
+            footer: baseFooter
           }
         },
         {
-          path:'lineLogApplyList',
-          name:'lineLogApplyList',
-          components:{
-            header:baseHeader,
-            sider:adminSider,
-            content:lineLogApplyList,
-            footer:baseFooter
+          path: 'lineLogApplyList',
+          name: 'lineLogApplyList',
+          components: {
+            header: baseHeader,
+            sider: adminSider,
+            content: lineLogApplyList,
+            footer: baseFooter
+          }
+        },
+        {
+          path: 'lineLogApplyDetail',
+          name: 'lineLogApplyDetail',
+          components: {
+            header: baseHeader,
+            sider: adminSider,
+            content: lineLogApplyDetail,
+            footer: baseFooter
           }
         }
       ]

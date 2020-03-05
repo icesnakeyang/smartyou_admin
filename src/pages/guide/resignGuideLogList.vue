@@ -2,7 +2,7 @@
   <div>
     <Card>
       <Table :columns="col1" :data="resignLogs"></Table>
-      <Page :total="totalResignLog"></Page>
+      <Page :total="totalResignLog" @on-change="pageChange"></Page>
     </Card>
   </div>
 </template>
@@ -114,7 +114,11 @@
                         guideLogId: row.guide_log_id
                     }
                 })
-            }
+            },
+
+          pageChange(e){
+              console.log(e)
+          }
         },
         mounted() {
             this.loadAllData()
