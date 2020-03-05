@@ -145,6 +145,11 @@
                         name: 'resignGuideLogList'
                     })
                 }
+                if(name==='menuLineLogApply'){
+                    this.$router.push({
+                        name:'lineLogApplyList'
+                    })
+                }
             }
         }
     }

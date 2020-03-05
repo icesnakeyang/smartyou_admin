@@ -319,4 +319,12 @@ export const apiListResignLog = params => {
   })
 }
 
+export const apiListLineLog = params => {
+  return axios.post(`${host}/admin/line/listLineLog`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
 
