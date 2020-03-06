@@ -34,6 +34,7 @@ import resignLogDetail from "../pages/guide/resignLogDetail";
 import lineLogApplyList from "../pages/lineLog/applyList/lineLogApplyList";
 import lineLogApplyDetail from "@/pages/lineLog/applyDetail/lineLogApplyDetail";
 import lineList from "../pages/line/lineList";
+import lineDetail from "@/pages/line/lineDetail";
 
 Vue.use(Router)
 
@@ -318,6 +319,16 @@ const router = new Router({
             header: baseHeader,
             sider: adminSider,
             content: lineList,
+            footer: baseFooter
+          }
+        },
+        {
+          path: 'lineDetail',
+          name: 'lineDetail',
+          components: {
+            header: baseHeader,
+            sider: adminSider,
+            content: lineDetail,
             footer: baseFooter
           }
         }

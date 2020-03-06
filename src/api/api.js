@@ -359,4 +359,12 @@ export const apiListLine = params => {
   })
 }
 
+export const apiGetLine = params => {
+  return axios.post(`${host}/admin/line/getLine`, params, {
+    headers: {
+      token: store.state.gogo_smartyou_token
+    }
+  })
+}
+
 
