@@ -2,7 +2,21 @@
   <div>
     <Card>
       <p slot="title">导游详细信息</p>
-
+      <img :src="guideInfo.avata_url">
+        <p>姓名：{{guideInfo.name}}</p>
+        <p>地址：{{guideInfo.location}}</p>
+        <p>年龄：{{guideInfo.age}}</p>
+        <p>身份证：{{guideInfo.idcard}}</p>
+        <p>电话：{{guideInfo.phone}}</p>
+        <p>用户Id：{{guideInfo.user_id}}</p>
+        <p>导游Id：{{guideInfo.guide_id}}</p>
+        <p>特征：{{guideInfo.style_key}}</p>
+        <p>注册时间：{{registerTime}}</p>
+        <p>擅长语言：{{guideInfo.language}}</p>
+        <p>出生日期：{{guideInfo.birth_date}}</p>
+        <p>性别：{{sex}}</p>
+      <Divider/>
+        <p>自我描述：<span v-html="guideInfo.description"></span></p>
         <Divider/>
         <p>当前状态：
           <span v-if="isBanned">
@@ -92,12 +106,12 @@
   import {
     apiActiveGuide,
     apiAgreeGuide,
-    apiBbanGuide,
     apiDeleteGuide,
     apiGetGuide,
     apiRejectGuide
   } from "../../api/api";
   import moment from "moment";
+  import {apiBanGuide} from "@/api/api";
 
   export default {
     name: "guideInfoDetail",
@@ -118,6 +132,13 @@
       registerTime() {
         if (this.guideInfo.register_time) {
           return moment(this.guideInfo.register_time).format('YYYY-MM-DD HH:mm')
+        }
+      },
+      sex(){
+        if(this.guideInfo.sex==='F'){
+          return '女'
+        }else{
+          return '男'
         }
       },
       status() {
@@ -211,10 +232,11 @@
       },
       btBan() {
         let params = {
-          guideId: this.$route.params.guideId,
-          remark: this.banRemark
+          guideId: this.guideInfo.guide_id,
+          processRemark: this.banRemark
         }
-        apiBbanGuide(params).then((response) => {
+        console.log(params)
+        apiBanGuide(params).then((response) => {
           if (response.data.code === 0) {
             this.$Message.success('已禁止该导游服务')
             this.loadAllData()
@@ -227,8 +249,8 @@
       },
       btActive() {
         let params = {
-          guideId: this.$route.params.guideId,
-          remark: this.activeRemark
+          guideId: this.guideInfo.guide_id,
+          processRemark: this.activeRemark
         }
         apiActiveGuide(params).then((response) => {
           if (response.data.code === 0) {

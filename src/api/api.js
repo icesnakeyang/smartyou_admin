@@ -215,7 +215,7 @@ export const apiRejectGuide = params => {
   })
 }
 
-export const apiBbanGuide = params => {
+export const apiBanGuide = params => {
   return axios.post(`${host}/admin/guide/banGuide`, params, {
     headers: {
       token: store.state.gogo_smartyou_token
