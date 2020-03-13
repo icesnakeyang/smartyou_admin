@@ -67,7 +67,6 @@
           if (response.data.code === 0) {
             this.lines = response.data.data.lines
             this.totalLine = response.data.data.totalLine
-            console.log(this.lines)
           } else {
             this.$Message.error(response.data.code)
           }
@@ -77,11 +76,9 @@
       },
 
       pageChange(page) {
-        console.log(page)
       },
 
       showDetail(row) {
-        console.log(row.lineId)
         this.$router.push({
           name: 'lineDetail',
           params: {

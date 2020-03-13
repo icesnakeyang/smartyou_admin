@@ -9,7 +9,7 @@
         <Input type="text" v-model="tour.title"></Input>
       </FormItem>
       <FormItem label="Logo">
-        <LogoImg :logoUrlProp="tour.logoFile"
+        <LogoImg :logoUrlProp="tour.logoImgUrl"
                  @event1="change($event)"/>
       </FormItem>
       <FormItem label="主题">
@@ -147,7 +147,6 @@
         }
         this.tour.tourContents.push(this.tourContent)
 
-        console.log(this.tour.tourContents)
       },
 
       /**
@@ -155,14 +154,11 @@
        * @param index
        */
       modalDeleteRow(index) {
-        console.log(this.tour.tourContents)
-        console.log(index)
         this.$Modal.confirm({
           title: '确认删除？',
           okText: '删除',
           cancelText: '取消',
           onOk: () => {
-            console.log(this.tour.tourContents)
             this.tour.tourContents.splice(index, 1)
           }
         })

@@ -62,7 +62,6 @@
         },
         methods: {
             ok() {
-                console.log('ok')
                 let processResult = {
                     status: false,
                     processRemark: this.processRemark,
@@ -78,7 +77,6 @@
                     event: 'cancel',
                     result: this.processType
                 }
-                console.log(processResult)
                 this.$emit("modalOutHandle", processResult)
             }
         }

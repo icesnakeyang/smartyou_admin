@@ -58,7 +58,6 @@
             }
         },
         mounted() {
-            console.log(this.guideData)
         }
     }
 </script>

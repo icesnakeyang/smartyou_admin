@@ -55,7 +55,6 @@
         apiGetLine(params).then((response) => {
           if (response.data.code === 0) {
             this.line = response.data.data.line
-            console.log(this.line)
           } else {
             this.$Message.error(response.data.code)
           }

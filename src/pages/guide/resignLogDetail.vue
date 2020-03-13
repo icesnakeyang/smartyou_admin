@@ -40,10 +40,8 @@
                     guideLogId:this.$route.params.guideLogId
                 }
                 apiGetGuideLog(params).then((response)=>{
-                    console.log(response)
                     if(response.data.code===0){
                         this.guideLog=response.data.data.guideLog
-                        console.log(this.guideLog)
                     }else{
                         this.$Message.error(response.data.code)
                     }

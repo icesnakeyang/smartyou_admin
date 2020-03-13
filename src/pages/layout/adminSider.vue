@@ -4,31 +4,32 @@
       <Icon type="md-document"/>
       控制台
     </MenuItem>
-    <Submenu name="menuTrain">
-      <template slot="title">
-        <Icon type="ios-keypad"></Icon>
-        火车票管理
-      </template>
-      <MenuItem name="menuTrainOrder">订单管理</MenuItem>
-    </Submenu>
+<!--    <Submenu name="menuTrain">-->
+<!--      <template slot="title">-->
+<!--        <Icon type="ios-keypad"></Icon>-->
+<!--        火车票管理-->
+<!--      </template>-->
+<!--      <MenuItem name="menuTrainOrder">订单管理</MenuItem>-->
+<!--    </Submenu>-->
 
-    <Submenu name="menuAircraft">
-      <template slot="title">
-        <Icon type="ios-keypad"></Icon>
-        飞机票管理
-      </template>
-      <MenuItem name="menuAirOrder">Option 1</MenuItem>
-      <MenuItem name="menuAirRefund">Option 2</MenuItem>
-    </Submenu>
+<!--    <Submenu name="menuAircraft">-->
+<!--      <template slot="title">-->
+<!--        <Icon type="ios-keypad"></Icon>-->
+<!--        飞机票管理-->
+<!--      </template>-->
+<!--      <MenuItem name="menuAirOrder">Option 1</MenuItem>-->
+<!--      <MenuItem name="menuAirRefund">Option 2</MenuItem>-->
+<!--    </Submenu>-->
 
-    <Submenu name="4">
-      <template slot="title">
-        <Icon type="ios-analytics"></Icon>
-        酒店管理
-      </template>
-      <MenuItem name="4-1">Option 1</MenuItem>
-      <MenuItem name="4-2">Option 2</MenuItem>
-    </Submenu>
+<!--    <Submenu name="4">-->
+<!--      <template slot="title">-->
+<!--        <Icon type="ios-analytics"></Icon>-->
+<!--        酒店管理-->
+<!--      </template>-->
+<!--      <MenuItem name="4-1">Option 1</MenuItem>-->
+<!--      <MenuItem name="4-2">Option 2</MenuItem>-->
+<!--    </Submenu>-->
+
     <Submenu name="5">
       <template slot="title">
         <Icon type="ios-analytics"></Icon>
@@ -40,7 +41,7 @@
     <Submenu name="6">
       <template slot="title">
         <Icon type="ios-analytics"></Icon>
-        旅游线路
+        xxx
       </template>
       <MenuItem name="menuTourDashboard">控制台</MenuItem>
       <MenuItem name="menuTourList">旅游线路列表</MenuItem>
@@ -65,8 +66,9 @@
         <Icon type="ios-analytics"></Icon>
         用户攻略
       </template>
-      <MenuItem name="8-1">Option 1</MenuItem>
-      <MenuItem name="8-2">Option 2</MenuItem>
+      <MenuItem name="menuTourDashboard">控制台</MenuItem>
+      <MenuItem name="menuTourList">用户攻略</MenuItem>
+      <MenuItem name="menuTourHistoryList">用户攻略历史</MenuItem>
     </Submenu>
     <Submenu name=menuRentVehicle>
       <template slot="title">

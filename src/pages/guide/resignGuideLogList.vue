@@ -81,7 +81,6 @@
                     pageSize: this.pageSize
                 }
                 apiListResignLog(params).then((response) => {
-                    console.log(response)
                     if (response.data.code === 0) {
                         this.resignLogs = response.data.data.resignLogs
                         this.totalResignLog = response.data.data.totalResignLogs
@@ -107,7 +106,6 @@
                 }
             },
             btDetail(row) {
-                console.log(row)
                 this.$router.push({
                     name: 'resignLogDetail',
                     params: {
@@ -117,7 +115,6 @@
             },
 
           pageChange(e){
-              console.log(e)
           }
         },
         mounted() {

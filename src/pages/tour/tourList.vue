@@ -34,6 +34,7 @@
 <script>
     import {apiListSpecialPriceTour, apiListTour} from "../../api/api";
     import StatusTagComponent from '../common/components/statusTagComponent'
+    import moment from "moment";
 
     export default {
         name: "tourList",
@@ -53,16 +54,14 @@
                         key: 'brief'
                     },
                     {
-                        title: '价格',
-                        key: 'price'
-                    },
-                    {
                         title: '状态',
                         slot: 'status'
                     },
                     {
                         title: '发布时间',
-                        key: 'publishTime'
+                        render:(h, params)=> {
+                          return h('div', moment(params.createTime).format('YYYY-MM-DD HH:mm'))
+                        }
                     },
                     {
                         title: 'Action',

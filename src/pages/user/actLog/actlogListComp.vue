@@ -45,7 +45,6 @@
           userId: this.userId
         }
         apiListUserActLog(params).then((response) => {
-          console.log(response)
           if (response.data.code === 0) {
             this.userActLogs = response.data.data.userActLogs
           }
@@ -55,7 +54,6 @@
       }
     },
     mounted() {
-      console.log('show log')
       this.loadAllData()
     }
   }

@@ -107,12 +107,9 @@
           pageIndex: this.pageIndex,
           pageSize: this.pageSize
         }).then((response) => {
-          console.log(response)
           if (response.data.code === 0) {
             this.guideLogList = response.data.data.guideLogs
             this.total = response.data.data.total
-            console.log(this.guideLogList)
-            console.log(this.total)
           } else {
             throw new Error(error)
           }
@@ -149,7 +146,6 @@
         this.loadAllData()
       },
       btDetail(row) {
-        console.log(row)
         this.$router.push({
           name: 'guideLogDetail',
           params: {

@@ -100,9 +100,7 @@
                 let params = {
                     guideLogId: this.$route.params.guideLogId
                 }
-                console.log(params)
                 apiGetGuideLog(params).then((response) => {
-                    console.log(response)
                     if (response.data.code === 0) {
                         this.guideLog = response.data.data.guideLog
                     }
@@ -120,7 +118,6 @@
                 this.modalStatus = true
             },
             modalOutHandle(data) {
-                console.log(data)
                 this.modalStatus = data.status
                 if(data.event==='ok' && data.result==='AGREE'){
                     //审核通过
@@ -130,7 +127,6 @@
                     }
 
                     apiAgreeGuide(params).then((response) => {
-                        console.log(response)
                         if (response.data.code === 0) {
                             this.$Message.success('已通过导游审核')
                             this.loadAllData()

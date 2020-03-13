@@ -59,6 +59,7 @@
                 }).then((response) => {
                     if (response.data.code === 0) {
                         this.tour = response.data.data.tour
+                      console.log(this.tour)
                     } else {
                         throw new Error('读取数据失败')
                     }
@@ -91,13 +92,11 @@
             },
 
             btAgree() {
-                console.log(this.processRemark)
                 let params = {
                     tourId: this.tour.tourId,
                     processRemark: this.processRemark
                 }
                 apiAgreeTour(params).then((response) => {
-                    console.log(response)
                     if (response.data.code === 0) {
                         this.$Message.success('审核通过，旅游线路已发布')
                         this.$router.push({
@@ -112,13 +111,11 @@
             },
 
             btReject() {
-                console.log(this.processRemark)
                 let params = {
                     tourId: this.tour.tourId,
                     processRemark: this.processRemark
                 }
                 apiRejectTour(params).then((response) => {
-                    console.log(response)
                     if (response.data.code === 0) {
                         this.$Message.info('已拒绝该旅游线路')
                         this.$router.push({

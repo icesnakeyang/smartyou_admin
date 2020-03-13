@@ -89,14 +89,12 @@
     },
     methods: {
       loadAllData() {
-        console.log(this.$route.params.lineLogId)
         let params = {
           lineLogId: this.$route.params.lineLogId
         }
         apiGetLineLog(params).then((response) => {
           if (response.data.code === 0) {
             this.lineLog = response.data.data.lineLog
-            console.log(this.lineLog)
           } else {
             this.$Message.error(response.data.code)
           }
@@ -105,7 +103,6 @@
         })
       },
       modalAgreeOk(){
-        console.log('同意')
           let params={
               lineLogId:this.$route.params.lineLogId
           }
@@ -120,7 +117,6 @@
           })
       },
       modalRejectOk(){
-        console.log('拒绝')
           let params={
               lineLogId:this.$route.params.lineLogId,
               processRemark:this.processRemark

@@ -68,7 +68,6 @@
           pageSize: this.pageSize
         }
         apiListLineLog(params).then((response) => {
-          console.log(response)
           if (response.data.code === 0) {
             this.lineLogList = response.data.data.lineLogs
             this.totalLineLog = response.data.data.totalLineLog
@@ -76,7 +75,6 @@
             this.$Message.error(response.data.code)
           }
         }).catch((error) => {
-          console.log(error)
           this.$Message.error(error)
         })
       },
@@ -88,7 +86,6 @@
       },
 
       btDetail(row){
-        console.log(row.line_log_id)
         this.$router.push({
           name:'lineLogApplyDetail',
           params:{
@@ -98,7 +95,6 @@
       },
 
       pageChange(e){
-        console.log(e)
       }
     },
     mounted() {

@@ -188,7 +188,6 @@
           guideId: this.$route.params.guideInfoId
         }
         apiGetGuide(params).then((response) => {
-            console.log(response)
           if (response.data.code === 0) {
             this.guideInfo = response.data.data.guideInfo
           } else {
@@ -235,7 +234,6 @@
           guideId: this.guideInfo.guide_id,
           processRemark: this.banRemark
         }
-        console.log(params)
         apiBanGuide(params).then((response) => {
           if (response.data.code === 0) {
             this.$Message.success('已禁止该导游服务')
