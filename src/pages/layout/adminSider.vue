@@ -37,20 +37,19 @@
       </template>
       <MenuItem name="menuLineDashboard">控制台</MenuItem>
       <MenuItem name="menuLineList">旅游线路列表</MenuItem>
-    </Submenu>
-    <Submenu name="6">
-      <template slot="title">
-        <Icon type="ios-analytics"></Icon>
-        xxx
-      </template>
-      <MenuItem name="menuTourDashboard">控制台</MenuItem>
-      <MenuItem name="menuTourList">旅游线路列表</MenuItem>
       <MenuItem name="menuLineLogApply">导游申请的线路</MenuItem>
-
-      <MenuItem name="menuNewTour">创建旅游线路</MenuItem>
-      <MenuItem name="menuTourOrderList">用户旅游线路订单</MenuItem>
-      <MenuItem name="menuTestPic">测试图片</MenuItem>
     </Submenu>
+<!--    <Submenu name="6">-->
+<!--      <template slot="title">-->
+<!--        <Icon type="ios-analytics"></Icon>-->
+<!--        xxx-->
+<!--      </template>-->
+<!--      <MenuItem name="menuTourDashboard">控制台</MenuItem>-->
+<!--      <MenuItem name="menuTourList">旅游线路列表</MenuItem>-->
+<!--      <MenuItem name="menuNewTour">创建旅游线路</MenuItem>-->
+<!--      <MenuItem name="menuTourOrderList">用户旅游线路订单</MenuItem>-->
+<!--      <MenuItem name="menuTestPic">测试图片</MenuItem>-->
+<!--    </Submenu>-->
     <Submenu name="7">
       <template slot="title">
         <Icon type="ios-analytics"></Icon>
