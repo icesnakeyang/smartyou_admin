@@ -29,7 +29,6 @@
           <Tag color="primary">{{status}}</Tag>
         </span>
         </p>
-
         <p>管理员处理时间：{{processTime}}</p>
         <p>管理员处理说明：{{guideInfo.processRemark}}</p>
     </Card>
@@ -40,6 +39,14 @@
         <Button type="error" @click="modalReject=true">拒绝申请</Button>
       </div>
     </div>
+
+    <div v-if="">
+      <Card style="margin-top: 20px">
+        <p slot="title">审核情况</p>
+        <p><Tag color="success">已审核通过</Tag></p>
+      </Card>
+    </div>
+
     <div style="margin-top: 20px">
       <Button type="primary" @click="modalBan=true">禁止导游服务</Button>
       <Button type="primary" @click="modalActive=true">恢复导游服务</Button>
@@ -190,6 +197,7 @@
         apiGetGuide(params).then((response) => {
           if (response.data.code === 0) {
             this.guideInfo = response.data.data.guideInfo
+            console.log(this.guideInfo)
           } else {
             throw new Error('读取数据库错误')
           }
